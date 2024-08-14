@@ -57,10 +57,12 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#fol-verifier">FOL Verifier</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">FOL Verifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-functions-required">Custom functions required:</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ltl-verifier">LTL Verifier</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">LTL Verifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Custom functions required:</a></li>
 </ul>
 </li>
 </ul>
@@ -114,7 +116,9 @@ The component calls the LLM via function calling (by default using GPT’s funct
 <h3>FOL Verifier<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <p>This component is implemented by the Fol_verifier class, responsible for verifying whether the output of the LLM satisfies the FOL constraints. This component, based on the Z3 Python API, implements the template for the entire verification process and the core verification functions.</p>
 <p>Users need to extract and populate each step’s state, as well as the initial and goal states, from the problem and plan provided in natural language. By calling the verification() function, the component returns the verification results and identifies the specific step that violates the specification. Then generate reasoning based on user requirements.</p>
-<p>Custom functions required:</p>
+</section>
+<section id="custom-functions-required">
+<h3>Custom functions required:<a class="headerlink" href="#custom-functions-required" title="Link to this heading"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return problem from raw_problem</span>
 <span class="c1"># Customize according to each specific tasks</span>
 <span class="k">def</span> <span class="nf">get_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -161,7 +165,9 @@ The component calls the LLM via function calling (by default using GPT’s funct
 <h3>LTL Verifier<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <p>This component is implemented by the LTL_verifier class, responsible for verifying whether the output of the LLM satisfies the LTL constraints. This component, based on the Spot Python API, implements the template for the entire verification process and the core verification functions.</p>
 <p>Users need to extract and populate each step’s state and transitions, from the problem and plan provided in natural language. By calling the verification() function, the component returns the verification results and identifies the specific step that violates the specification. Then generate reasoning based on user requirements.</p>
-<p>Custom functions required:</p>
+</section>
+<section id="id4">
+<h3>Custom functions required:<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return atomic proposition list from problem</span>
 <span class="c1"># Customize according to each specific tasks</span>
 <span class="k">def</span> <span class="nf">get_aps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem_path</span><span class="p">):</span>

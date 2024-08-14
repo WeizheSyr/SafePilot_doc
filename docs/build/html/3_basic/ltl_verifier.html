@@ -82,7 +82,9 @@
 <h1>LTL Verifier<a class="headerlink" href="#ltl-verifier" title="Link to this heading"></a></h1>
 <p>This component is implemented by the LTL_verifier class, responsible for verifying whether the output of the LLM satisfies the LTL constraints. This component, based on the Spot Python API, implements the template for the entire verification process and the core verification functions.</p>
 <p>Users need to extract and populate each step’s state and transitions, from the problem and plan provided in natural language. By calling the verification() function, the component returns the verification results and identifies the specific step that violates the specification. Then generate reasoning based on user requirements.</p>
-<p>Custom functions required:</p>
+</section>
+<section id="custom-functions-required">
+<h1>Custom functions required:<a class="headerlink" href="#custom-functions-required" title="Link to this heading"></a></h1>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return atomic proposition list from problem</span>
 <span class="c1"># Customize according to each specific tasks</span>
 <span class="k">def</span> <span class="nf">get_aps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem_path</span><span class="p">):</span>
