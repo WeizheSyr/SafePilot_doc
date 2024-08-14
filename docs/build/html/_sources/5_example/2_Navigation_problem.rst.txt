@@ -39,7 +39,7 @@ The specific problem is as follows.
 The figure below shows the cities and roads of the problem.
 
 .. image:: images/5_example/map1.png
-   :width: 650 px
+   :width: 450 px
    :align: center
    :alt: Navigation problem
 
@@ -85,4 +85,4 @@ Correct result is shown below.
    10. B -> F 
    11. F -> G 
    END-PLAN
-   
+

@@ -53,6 +53,7 @@
 <li class="toctree-l1"><a class="reference internal" href="3_basic.html">Built-in Components</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Custom Components</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#target-new-problems">Target new problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#change-llms">Change LLMs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="5_example.html">Examples</a></li>
@@ -169,6 +170,14 @@ Functions to be customized in <code class="docutils literal notranslate"><span c
 <li><p>FOL verifier, such as <a class="reference external" href="https://github.com/WeizheSyr/SafePilot/blob/main/src/examples/case1/verifier.py">case1/verifier.py</a>.</p></li>
 <li><p>LTL verifier, such as <a class="reference external" href="https://github.com/WeizheSyr/SafePilot/blob/main/src/examples/case2/verifier.py">case2/verifier.py</a>.</p></li>
 </ul>
+</section>
+<section id="change-llms">
+<h2>Change LLMs<a class="headerlink" href="#change-llms" title="Link to this heading"></a></h2>
+<p>Our tool allows for easy switching of the desired LLMs by inheriting the <code class="docutils literal notranslate"><span class="pre">Llm</span></code> class and modifying the parameters when invoking the <code class="docutils literal notranslate"><span class="pre">Llm</span></code> class.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>It is important to note that the provided template uses the function calling API to invoke the LLM, ensuring that the output is a JSON file that is easy to parse and avoids unnecessary or irrelevant output. Therefore, when switching LLMs, please select models that support the function calling API, such as the GPT series, LLaMA, and others.</p>
+</div>
 </section>
 </section>
 

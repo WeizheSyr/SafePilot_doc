@@ -88,3 +88,13 @@ For complete examples, please refer to the source code of the examples.
 * First prompt for getting plan, such as `first_prompt_plan.txt <https://github.com/WeizheSyr/SafePilot/blob/main/src/examples/case1/first_prompt_plan.txt>`_.
 * FOL verifier, such as `case1/verifier.py <https://github.com/WeizheSyr/SafePilot/blob/main/src/examples/case1/verifier.py>`_.
 * LTL verifier, such as `case2/verifier.py <https://github.com/WeizheSyr/SafePilot/blob/main/src/examples/case2/verifier.py>`_.
+
+
+Change LLMs
+-------------------
+
+Our tool allows for easy switching of the desired LLMs by inheriting the ``Llm`` class and modifying the parameters when invoking the ``Llm`` class.
+
+.. Important::
+
+   It is important to note that the provided template uses the function calling API to invoke the LLM, ensuring that the output is a JSON file that is easy to parse and avoids unnecessary or irrelevant output. Therefore, when switching LLMs, please select models that support the function calling API, such as the GPT series, LLaMA, and others.
