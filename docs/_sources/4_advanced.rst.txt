@@ -3,7 +3,6 @@ Custom Components
 
 Target new problems
 -------------------
-We can define a new controller by inheriting the ``Controller`` class.
 1. Create a new Python file to invoke the various components, define parameters for calling the LLM, and specify prompts for the interactions.
 
 2. Create new files to store the initial prompt for querying the formula specification and the initial prompt for querying the motion plan results.
