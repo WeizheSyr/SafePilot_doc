@@ -6,32 +6,17 @@ Built-in Components
     This page is under construction and will be ready later.
 
 
-Linear System Models
+LLM API
 --------------------
-.. include:: ./3_basic/linear_model.rst
+.. include:: ./3_basic/llm_api.rst
 
 
-Nonlinear System Models
+FOL Verifier
 -----------------------
-.. include:: ./3_basic/nonlinear_model.rst
+.. include:: ./3_basic/fol_verifier.rst
 
 
-Controllers
+LTL Verifier
 --------------------
-.. include:: ./3_basic/controller.rst
-
-
-Formal Methods
---------------------
-.. include:: ./3_basic/formal.rst
-
-
-Noise / Disturbance
---------------------
-.. include:: ./3_basic/noise.rst
-
-
-Attack Simulator
---------------------
-.. include:: ./3_basic/attack.rst
+.. include:: ./3_basic/ltl_verifier.rst
 

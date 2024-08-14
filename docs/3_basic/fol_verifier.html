@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PID &mdash; SafePilot 0.1 documentation</title>
+  <title>FOL Verifier &mdash; SafePilot 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -68,9 +68,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">PID</li>
+      <li class="breadcrumb-item active">FOL Verifier</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/3_basic/controller.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/3_basic/fol_verifier.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -78,17 +78,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="pid">
-<h1>PID<a class="headerlink" href="#pid" title="Link to this heading"></a></h1>
-<p>A proportional–integral–derivative controller (PID controller or three-term controller) is a control loop mechanism employing feedback that is widely used in industrial control systems and a variety of other applications requiring continuously modulated control.</p>
-</section>
-<section id="lqr">
-<h1>LQR<a class="headerlink" href="#lqr" title="Link to this heading"></a></h1>
-<p>The settings of a (regulating) controller governing either a machine or process (like an airplane or chemical reactor) are found by using a mathematical algorithm that minimizes a cost function with weighting factors supplied by a human (engineer). The cost function is often defined as a sum of the deviations of key measurements, like altitude or process temperature, from their desired values. The algorithm thus finds those controller settings that minimize undesired deviations. The magnitude of the control action itself may also be included in the cost function.</p>
-</section>
-<section id="mpc">
-<h1>MPC<a class="headerlink" href="#mpc" title="Link to this heading"></a></h1>
-<p>Model predictive control (MPC) is an optimal control technique in which the calculated control actions minimize a cost function for a constrained dynamical system over a finite, receding, horizon.</p>
+  <section id="fol-verifier">
+<h1>FOL Verifier<a class="headerlink" href="#fol-verifier" title="Link to this heading"></a></h1>
+<p>This component is implemented by the Fol_verifier class, responsible for verifying whether the output of the LLM satisfies the FOL constraints. This component, based on the Z3 Python API, implements the template for the entire verification process and the core verification functions.</p>
+<p>Users need to extract and populate each step’s state, as well as the initial and goal states, from the problem and plan provided in natural language. By calling the verification() function, the component returns the verification results and identifies the specific step that violates the specification. Then generate reasoning based on user requirements.</p>
+<p>Custom functions required:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return problem from raw_problem</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="k">def</span> <span class="nf">get_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Return plan list from raw_plan</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="k">def</span> <span class="nf">get_plan</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Set states from plan</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="k">def</span> <span class="nf">set_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Set the initial state</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="c1"># Return the initial state</span>
+<span class="k">def</span> <span class="nf">set_initial_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Set the goal state</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="c1"># Return the goal state</span>
+<span class="k">def</span> <span class="nf">is_goal_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Populate self.steps based on the obtained plan,</span>
+<span class="c1"># with each entry comprising (action, *args, s_prev, s_next),</span>
+<span class="c1"># representing the action, action objects, previous state, and next state, respectively.</span>
+<span class="k">def</span> <span class="nf">set_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Generate reasoning according to wrong_steps</span>
+<span class="k">def</span> <span class="nf">reasoning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrong_steps</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
 </section>
 
 
