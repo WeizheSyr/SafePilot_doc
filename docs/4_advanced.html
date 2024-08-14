@@ -52,8 +52,7 @@
 <li class="toctree-l1"><a class="reference internal" href="2_install.html">Get Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3_basic.html">Built-in Components</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Custom Components</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#add-new-models">Add New Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#add-new-controllers">Add New Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#target-new-problems">Target new problems</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="5_example.html">Examples</a></li>
@@ -86,64 +85,91 @@
              
   <section id="custom-components">
 <h1>Custom Components<a class="headerlink" href="#custom-components" title="Link to this heading"></a></h1>
-<section id="add-new-models">
-<h2>Add New Models<a class="headerlink" href="#add-new-models" title="Link to this heading"></a></h2>
-<p>We define system models in the <code class="docutils literal notranslate"><span class="pre">cpsim.models</span></code> subpackage.
-Here are steps to add a new model:</p>
-<ol class="arabic simple">
-<li><p>Define system dynamics (state-space model for linear systems, ODE for nonlinear systems).</p></li>
-</ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">system_name</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
-    <span class="c1"># ODE here</span>
-    <span class="k">return</span> <span class="n">dx</span>   <span class="c1"># dx is the derivative of x, shape (n,)</span>
-</pre></div>
-</div>
+<section id="target-new-problems">
+<h2>Target new problems<a class="headerlink" href="#target-new-problems" title="Link to this heading"></a></h2>
+<p>We can define a new controller by inheriting the <code class="docutils literal notranslate"><span class="pre">Controller</span></code> class.
+1. Create a new Python file to invoke the various components, define parameters for calling the LLM, and specify prompts for the interactions.</p>
 <ol class="arabic simple" start="2">
-<li><p>Define a controller for the system, and we can use built-in controllers.</p></li>
+<li><p>Create new files to store the initial prompt for querying the formula specification and the initial prompt for querying the motion plan results.</p></li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Controller</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span>
-        <span class="c1"># init controller here</span>
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">feedback_value</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">current_time</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-        <span class="c1"># calculate one step of control input here</span>
-        <span class="k">return</span> <span class="n">u</span>   <span class="c1"># shape: (m,)</span>
-    <span class="k">def</span> <span class="nf">set_control_limit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">control_lo</span><span class="p">,</span> <span class="n">control_up</span><span class="p">):</span>
-        <span class="c1"># set control limits here, the maximum range of control input</span>
-        <span class="k">pass</span>
-    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># reset controller here if needed</span>
-        <span class="k">pass</span>
+<p>3. Customize FOL verifier if your constraints are expressed in FOL.
+Functions to be customized in <code class="docutils literal notranslate"><span class="pre">Fol_verifier</span></code> class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return problem from raw_problem</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="k">def</span> <span class="nf">get_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Return plan list from raw_plan</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="k">def</span> <span class="nf">get_plan</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Set states from plan</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="k">def</span> <span class="nf">set_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Set the initial state</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="c1"># Return the initial state</span>
+<span class="k">def</span> <span class="nf">set_initial_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Set the goal state</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="c1"># Return the goal state</span>
+<span class="k">def</span> <span class="nf">is_goal_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Populate self.steps based on the obtained plan,</span>
+<span class="c1"># with each entry comprising (action, *args, s_prev, s_next),</span>
+<span class="c1"># representing the action, action objects, previous state, and next state, respectively.</span>
+<span class="k">def</span> <span class="nf">set_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Generate reasoning according to wrong_steps</span>
+<span class="k">def</span> <span class="nf">reasoning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrong_steps</span><span class="p">):</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="3">
-<li><p>Define the simulation class integrating the dynamics and controller</p></li>
-</ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SystemName</span><span class="p">(</span><span class="n">Simulator</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">max_index</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;SystemName &#39;</span> <span class="o">+</span> <span class="n">name</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">max_index</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nonlinear</span><span class="p">(</span><span class="n">ode</span><span class="o">=</span><span class="n">system_name</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># num of states,control inputs,outputs</span>
-        <span class="n">controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-        <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;init_state&#39;</span><span class="p">:</span> <span class="n">x_0</span><span class="p">,</span>  <span class="c1"># initial state</span>
-            <span class="s1">&#39;feedback_type&#39;</span><span class="p">:</span> <span class="s1">&#39;state&#39;</span><span class="p">,</span>  <span class="c1"># &#39;state&#39;or&#39;output&#39;, you must define C if &#39;output&#39;</span>
-            <span class="s1">&#39;controller&#39;</span><span class="p">:</span> <span class="n">controller</span>
-        <span class="p">}</span>
-        <span class="k">if</span> <span class="n">noise</span><span class="p">:</span>
-            <span class="n">settings</span><span class="p">[</span><span class="s1">&#39;noise&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">noise</span>  <span class="c1"># noise settings</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sim_init</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<p>4. Customize LTL verifier if your constraints are expressed in LTL.
+Functions to be customized in <code class="docutils literal notranslate"><span class="pre">LTL_verifier</span></code> class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return atomic proposition list from problem</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="k">def</span> <span class="nf">get_aps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem_path</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Return plan list from raw_plan</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="k">def</span> <span class="nf">get_plan</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Return !formula</span>
+<span class="k">def</span> <span class="nf">get_aformula</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">aparsed_formula</span> <span class="o">=</span> <span class="n">spot</span><span class="o">.</span><span class="n">formula</span><span class="o">.</span><span class="n">Not</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">formula</span><span class="p">)</span>
+    <span class="c1"># aformula = spot.translate(self.formula, dict=self.d)</span>
+    <span class="n">aformula</span> <span class="o">=</span> <span class="n">spot</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">aparsed_formula</span><span class="p">,</span> <span class="nb">dict</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">aformula</span>
+
+<span class="c1"># Return state list</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="k">def</span> <span class="nf">get_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bdd_ithvar_list</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Generate reason according to the wrong steps</span>
+<span class="c1"># Customize according to each specific tasks</span>
+<span class="k">def</span> <span class="nf">reasoning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrong_steps</span><span class="p">):</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
-<p>For complete examples, please refer to the source code of the built-in system models.</p>
+<p>For complete examples, please refer to the source code of the examples.</p>
 <ul class="simple">
-<li><p>Linear systems, such as <a class="reference external" href="https://github.com/lion-zhang/CPSim/blob/main/src/cpsim/models/linear/motor_speed.py">DC Motor Speed</a>.</p></li>
-<li><p>Nonlinear systems, such as <a class="reference external" href="https://github.com/lion-zhang/CPSim/blob/main/src/cpsim/models/nonlinear/inverted_pendulum.py">Inverted Pendulum</a>.</p></li>
+<li><p>Invoke components, such as <a class="reference external" href="https://github.com/WeizheSyr/SafePilot/blob/main/src/examples/case1/auto.py">auto.py</a>.</p></li>
+<li><p>First prompt for getting logic specification, such as <a class="reference external" href="https://github.com/WeizheSyr/SafePilot/blob/main/src/examples/case1/first_prompt_formula.txt">first_prompt_formula.txt</a>.</p></li>
+<li><p>First prompt for getting plan, such as <a class="reference external" href="https://github.com/WeizheSyr/SafePilot/blob/main/src/examples/case1/first_prompt_plan.txt">first_prompt_plan.txt</a>.</p></li>
+<li><p>FOL verifier, such as <a class="reference external" href="https://github.com/WeizheSyr/SafePilot/blob/main/src/examples/case1/verifier.py">case1/verifier.py</a>.</p></li>
+<li><p>LTL verifier, such as <a class="reference external" href="https://github.com/WeizheSyr/SafePilot/blob/main/src/examples/case2/verifier.py">case2/verifier.py</a>.</p></li>
 </ul>
-</section>
-<section id="add-new-controllers">
-<h2>Add New Controllers<a class="headerlink" href="#add-new-controllers" title="Link to this heading"></a></h2>
-<p>We can define a new controller by inheriting the <code class="docutils literal notranslate"><span class="pre">Controller</span></code> class.</p>
-<p>Please refer to the source code of the built-in controllers, such as <a class="reference external" href="https://github.com/lion-zhang/CPSim/blob/main/src/cpsim/controllers/LQR.py">LQR controller</a>, for more details.</p>
 </section>
 </section>
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Numerical Simulators &mdash; SafePilot 0.1 documentation</title>
+  <title>Navigation Problem &mdash; SafePilot 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -68,9 +68,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Numerical Simulators</li>
+      <li class="breadcrumb-item active">Navigation Problem</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/5_example/3_MPC_recovery.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/4_example/2_Navigation_problem.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -78,8 +78,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="numerical-simulators">
-<h1>Numerical Simulators<a class="headerlink" href="#numerical-simulators" title="Link to this heading"></a></h1>
+  <section id="navigation-problem">
+<h1>Navigation Problem<a class="headerlink" href="#navigation-problem" title="Link to this heading"></a></h1>
 <p>In this file, we choose a benchmark plant, CSTR shown in the following figure, controlled by a PID controller.
 Also, we define the bias sensor attack that subtracts 25K from the temperature sensor feedback starting from the ninth second.
 The detector identifies the attack at the 10th second, and triggers the recovery controllers.
@@ -90,12 +90,12 @@ Also, we define the bias sensor attack.
 The detector identifies the attack after the attack happends and triggers the recovery controllers.
 Baseline recovery controllers include (i) no recovery method (none), (ii) software-sensor-based recovery (ssr <a class="footnote-reference brackets" href="#id7" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>), (iii) linear-quadratic-regulator-based recovery (lqr <a class="footnote-reference brackets" href="#id8" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>), and (vi) data-predictive recovery (mpc <a class="footnote-reference brackets" href="#id9" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>).</p>
 <p>The following figure plots the results from the simulator. From the curve, we can intuitively analyze the recovery performance of each baseline recovery controller.</p>
-<a class="reference internal image-reference" href="5_example/images/5_example/performance.png"><img alt="Attack Recovery Performance for Baselines" class="align-center" src="5_example/images/5_example/performance.png" style="width: 650px;" /></a>
+<a class="reference internal image-reference" href="4_example/images/5_example/performance.png"><img alt="Attack Recovery Performance for Baselines" class="align-center" src="4_example/images/5_example/performance.png" style="width: 650px;" /></a>
 <p>We conduct a sensitivity analysis by varying bias values and noise on the CSTR benchmark. The findings are displayed in the two figures below.</p>
-<a class="reference internal image-reference" href="5_example/images/5_example/sensitivity_bias_CSTR.png"><img alt="Sensitivity analysis on CSTR benchmark" class="align-center" src="5_example/images/5_example/sensitivity_bias_CSTR.png" style="width: 650px;" /></a>
-<a class="reference internal image-reference" href="5_example/images/5_example/sensitivity_noise_CSTR.png"><img alt="Sensitivity analysis to noise on CSTR benchmark" class="align-center" src="5_example/images/5_example/sensitivity_noise_CSTR.png" style="width: 650px;" /></a>
+<a class="reference internal image-reference" href="4_example/images/5_example/sensitivity_bias_CSTR.png"><img alt="Sensitivity analysis on CSTR benchmark" class="align-center" src="4_example/images/5_example/sensitivity_bias_CSTR.png" style="width: 650px;" /></a>
+<a class="reference internal image-reference" href="4_example/images/5_example/sensitivity_noise_CSTR.png"><img alt="Sensitivity analysis to noise on CSTR benchmark" class="align-center" src="4_example/images/5_example/sensitivity_noise_CSTR.png" style="width: 650px;" /></a>
 <p>We also provide the sensitivity analysis by the noise with varying upper bound on the quadrotor benchmark.</p>
-<a class="reference internal image-reference" href="5_example/images/5_example/sensitivity_noise_Quadrotor.png"><img alt="Sensitivity analysis to noise on quadrotor benchmark" class="align-center" src="5_example/images/5_example/sensitivity_noise_Quadrotor.png" style="width: 650px;" /></a>
+<a class="reference internal image-reference" href="4_example/images/5_example/sensitivity_noise_Quadrotor.png"><img alt="Sensitivity analysis to noise on quadrotor benchmark" class="align-center" src="4_example/images/5_example/sensitivity_noise_Quadrotor.png" style="width: 650px;" /></a>
 <p>We provide the source code of above figures.</p>
 <p>Reference:</p>
 <aside class="footnote-list brackets">

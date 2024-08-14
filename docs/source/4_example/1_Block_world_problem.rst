@@ -1,4 +1,4 @@
-Fast Attack Recovery for Stochastic Cyber-Physical Systems
+Block World Problem
 ~~~~~~~~~~~~~~~~~~~~
 
 We present the simulations for the Fast Attack Recovery for Stochastic Cyber-Physical Systems paper [4]_. 

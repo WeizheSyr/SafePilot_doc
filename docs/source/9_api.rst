@@ -1,42 +1,46 @@
 APIs
 =============
 
-Subpackages
------------
+.. warning::
 
-.. toctree::
-   :maxdepth: 4
+    This page is under construction and will be ready later.
 
-   ./apidoc/cpsim.controllers
-   ./apidoc/cpsim.formal
-   ./apidoc/cpsim.info
-   ./apidoc/cpsim.models
-   ./apidoc/cpsim.observers
-   ./apidoc/cpsim.utils
+.. Subpackages
+.. -----------
 
-Submodules
-----------
+.. .. toctree::
+..    :maxdepth: 4
 
-cpsim.attack module
--------------------
+..    ./apidoc/cpsim.controllers
+..    ./apidoc/cpsim.formal
+..    ./apidoc/cpsim.info
+..    ./apidoc/cpsim.models
+..    ./apidoc/cpsim.observers
+..    ./apidoc/cpsim.utils
 
-.. automodule:: cpsim.attack
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. Submodules
+.. ----------
 
-cpsim.simulator module
-----------------------
+.. cpsim.attack module
+.. -------------------
 
-.. automodule:: cpsim.simulator
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. .. automodule:: cpsim.attack
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:
 
-Module contents
----------------
+.. cpsim.simulator module
+.. ----------------------
 
-.. automodule:: cpsim
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. .. automodule:: cpsim.simulator
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:
+
+.. Module contents
+.. ---------------
+
+.. .. automodule:: cpsim
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:

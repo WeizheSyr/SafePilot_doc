@@ -57,12 +57,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#fol-verifier">FOL Verifier</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">FOL Verifier</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#custom-functions-required">Custom functions required:</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ltl-verifier">LTL Verifier</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">LTL Verifier</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Custom functions required:</a></li>
 </ul>
 </li>
 </ul>
@@ -116,46 +114,9 @@ The component calls the LLM via function calling (by default using GPT’s funct
 <h3>FOL Verifier<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <p>This component is implemented by the Fol_verifier class, responsible for verifying whether the output of the LLM satisfies the FOL constraints. This component, based on the Z3 Python API, implements the template for the entire verification process and the core verification functions.</p>
 <p>Users need to extract and populate each step’s state, as well as the initial and goal states, from the problem and plan provided in natural language. By calling the verification() function, the component returns the verification results and identifies the specific step that violates the specification. Then generate reasoning based on user requirements.</p>
-</section>
-<section id="custom-functions-required">
-<h3>Custom functions required:<a class="headerlink" href="#custom-functions-required" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return problem from raw_problem</span>
-<span class="c1"># Customize according to each specific tasks</span>
-<span class="k">def</span> <span class="nf">get_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-<span class="c1"># Return plan list from raw_plan</span>
-<span class="c1"># Customize according to each specific tasks</span>
-<span class="k">def</span> <span class="nf">get_plan</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-<span class="c1"># Set states from plan</span>
-<span class="c1"># Customize according to each specific tasks</span>
-<span class="k">def</span> <span class="nf">set_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-<span class="c1"># Set the initial state</span>
-<span class="c1"># Customize according to each specific tasks</span>
-<span class="c1"># Return the initial state</span>
-<span class="k">def</span> <span class="nf">set_initial_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-<span class="c1"># Set the goal state</span>
-<span class="c1"># Customize according to each specific tasks</span>
-<span class="c1"># Return the goal state</span>
-<span class="k">def</span> <span class="nf">is_goal_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-<span class="c1"># Populate self.steps based on the obtained plan,</span>
-<span class="c1"># with each entry comprising (action, *args, s_prev, s_next),</span>
-<span class="c1"># representing the action, action objects, previous state, and next state, respectively.</span>
-<span class="k">def</span> <span class="nf">set_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-<span class="c1"># Generate reasoning according to wrong_steps</span>
-<span class="k">def</span> <span class="nf">reasoning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrong_steps</span><span class="p">):</span>
-    <span class="k">pass</span>
-</pre></div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Some functions require customization and will be detailed in the Custom Component section.</p>
 </div>
 </section>
 </section>
@@ -165,36 +126,9 @@ The component calls the LLM via function calling (by default using GPT’s funct
 <h3>LTL Verifier<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <p>This component is implemented by the LTL_verifier class, responsible for verifying whether the output of the LLM satisfies the LTL constraints. This component, based on the Spot Python API, implements the template for the entire verification process and the core verification functions.</p>
 <p>Users need to extract and populate each step’s state and transitions, from the problem and plan provided in natural language. By calling the verification() function, the component returns the verification results and identifies the specific step that violates the specification. Then generate reasoning based on user requirements.</p>
-</section>
-<section id="id4">
-<h3>Custom functions required:<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return atomic proposition list from problem</span>
-<span class="c1"># Customize according to each specific tasks</span>
-<span class="k">def</span> <span class="nf">get_aps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem_path</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-<span class="c1"># Return plan list from raw_plan</span>
-<span class="c1"># Customize according to each specific tasks</span>
-<span class="k">def</span> <span class="nf">get_plan</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-<span class="c1"># Return !formula</span>
-<span class="k">def</span> <span class="nf">get_aformula</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">aparsed_formula</span> <span class="o">=</span> <span class="n">spot</span><span class="o">.</span><span class="n">formula</span><span class="o">.</span><span class="n">Not</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">formula</span><span class="p">)</span>
-    <span class="c1"># aformula = spot.translate(self.formula, dict=self.d)</span>
-    <span class="n">aformula</span> <span class="o">=</span> <span class="n">spot</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">aparsed_formula</span><span class="p">,</span> <span class="nb">dict</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">aformula</span>
-
-<span class="c1"># Return state list</span>
-<span class="c1"># Customize according to each specific tasks</span>
-<span class="k">def</span> <span class="nf">get_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bdd_ithvar_list</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-<span class="c1"># Generate reason according to the wrong steps</span>
-<span class="c1"># Customize according to each specific tasks</span>
-<span class="k">def</span> <span class="nf">reasoning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wrong_steps</span><span class="p">):</span>
-    <span class="k">pass</span>
-</pre></div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Some functions require customization and will be detailed in the Custom Component section.</p>
 </div>
 </section>
 </section>
