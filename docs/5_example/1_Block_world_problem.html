@@ -84,28 +84,28 @@
 <p>We read the prompt from <code class="docutils literal notranslate"><span class="pre">first_prompt_formula.txt</span></code> and instruct the LLM to generate FOL specifications in the format required by the Z3 Python API.</p>
 <p>After manually checking the correctness of the generated specification, we proceed to request the LLM to generate a plan using prompt from <code class="docutils literal notranslate"><span class="pre">first_prompt_plan.txt</span></code>.</p>
 <p>The specific problem is as follows.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">define</span> <span class="p">(</span><span class="n">problem</span> <span class="n">BW</span><span class="o">-</span><span class="n">rand</span><span class="o">-</span><span class="mi">6</span><span class="p">)</span>
-<span class="p">(:</span><span class="n">domain</span> <span class="n">blocksworld</span><span class="o">-</span><span class="mi">4</span><span class="n">ops</span><span class="p">)</span>
-<span class="p">(:</span><span class="n">objects</span> <span class="n">b1</span> <span class="n">b2</span> <span class="n">b3</span> <span class="n">b4</span> <span class="n">b5</span> <span class="n">b6</span> <span class="p">)</span>
-<span class="p">(:</span><span class="n">init</span>
-<span class="p">(</span><span class="n">arm</span><span class="o">-</span><span class="n">empty</span><span class="p">)</span>
-<span class="p">(</span><span class="n">on</span> <span class="n">b1</span> <span class="n">b6</span><span class="p">)</span>
-<span class="p">(</span><span class="n">on</span> <span class="n">b2</span> <span class="n">b3</span><span class="p">)</span>
-<span class="p">(</span><span class="n">on</span><span class="o">-</span><span class="n">table</span> <span class="n">b3</span><span class="p">)</span>
-<span class="p">(</span><span class="n">on</span> <span class="n">b4</span> <span class="n">b1</span><span class="p">)</span>
-<span class="p">(</span><span class="n">on</span><span class="o">-</span><span class="n">table</span> <span class="n">b5</span><span class="p">)</span>
-<span class="p">(</span><span class="n">on</span><span class="o">-</span><span class="n">table</span> <span class="n">b6</span><span class="p">)</span>
-<span class="p">(</span><span class="n">clear</span> <span class="n">b2</span><span class="p">)</span>
-<span class="p">(</span><span class="n">clear</span> <span class="n">b4</span><span class="p">)</span>
-<span class="p">(</span><span class="n">clear</span> <span class="n">b5</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="p">(:</span><span class="n">goal</span>
-<span class="p">(</span><span class="ow">and</span>
-<span class="p">(</span><span class="n">on</span> <span class="n">b1</span> <span class="n">b2</span><span class="p">)</span>
-<span class="p">(</span><span class="n">on</span> <span class="n">b5</span> <span class="n">b3</span><span class="p">)</span>
-<span class="p">(</span><span class="n">on</span> <span class="n">b6</span> <span class="n">b4</span><span class="p">))</span>
-<span class="p">)</span>
-<span class="p">)</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="err">(de</span><span class="kc">f</span><span class="err">i</span><span class="kc">ne</span><span class="w"> </span><span class="err">(problem</span><span class="w"> </span><span class="err">BW</span><span class="mi">-</span><span class="err">ra</span><span class="kc">n</span><span class="err">d</span><span class="mi">-6</span><span class="err">)</span>
+<span class="err">(</span><span class="p">:</span><span class="err">domai</span><span class="kc">n</span><span class="w"> </span><span class="err">blocksworld</span><span class="mi">-4</span><span class="err">ops)</span>
+<span class="err">(</span><span class="p">:</span><span class="err">objec</span><span class="kc">ts</span><span class="w"> </span><span class="err">b</span><span class="mi">1</span><span class="w"> </span><span class="err">b</span><span class="mi">2</span><span class="w"> </span><span class="err">b</span><span class="mi">3</span><span class="w"> </span><span class="err">b</span><span class="mi">4</span><span class="w"> </span><span class="err">b</span><span class="mi">5</span><span class="w"> </span><span class="err">b</span><span class="mi">6</span><span class="w"> </span><span class="err">)</span>
+<span class="err">(</span><span class="p">:</span><span class="err">i</span><span class="kc">n</span><span class="err">i</span><span class="kc">t</span>
+<span class="err">(arm</span><span class="mf">-e</span><span class="err">mp</span><span class="kc">t</span><span class="err">y)</span>
+<span class="err">(o</span><span class="kc">n</span><span class="w"> </span><span class="err">b</span><span class="mi">1</span><span class="w"> </span><span class="err">b</span><span class="mi">6</span><span class="err">)</span>
+<span class="err">(o</span><span class="kc">n</span><span class="w"> </span><span class="err">b</span><span class="mi">2</span><span class="w"> </span><span class="err">b</span><span class="mi">3</span><span class="err">)</span>
+<span class="err">(o</span><span class="kc">n</span><span class="mi">-</span><span class="kc">ta</span><span class="err">ble</span><span class="w"> </span><span class="err">b</span><span class="mi">3</span><span class="err">)</span>
+<span class="err">(o</span><span class="kc">n</span><span class="w"> </span><span class="err">b</span><span class="mi">4</span><span class="w"> </span><span class="err">b</span><span class="mi">1</span><span class="err">)</span>
+<span class="err">(o</span><span class="kc">n</span><span class="mi">-</span><span class="kc">ta</span><span class="err">ble</span><span class="w"> </span><span class="err">b</span><span class="mi">5</span><span class="err">)</span>
+<span class="err">(o</span><span class="kc">n</span><span class="mi">-</span><span class="kc">ta</span><span class="err">ble</span><span class="w"> </span><span class="err">b</span><span class="mi">6</span><span class="err">)</span>
+<span class="err">(clear</span><span class="w"> </span><span class="err">b</span><span class="mi">2</span><span class="err">)</span>
+<span class="err">(clear</span><span class="w"> </span><span class="err">b</span><span class="mi">4</span><span class="err">)</span>
+<span class="err">(clear</span><span class="w"> </span><span class="err">b</span><span class="mi">5</span><span class="err">)</span>
+<span class="err">)</span>
+<span class="err">(</span><span class="p">:</span><span class="err">goal</span>
+<span class="err">(a</span><span class="kc">n</span><span class="err">d</span>
+<span class="err">(o</span><span class="kc">n</span><span class="w"> </span><span class="err">b</span><span class="mi">1</span><span class="w"> </span><span class="err">b</span><span class="mi">2</span><span class="err">)</span>
+<span class="err">(o</span><span class="kc">n</span><span class="w"> </span><span class="err">b</span><span class="mi">5</span><span class="w"> </span><span class="err">b</span><span class="mi">3</span><span class="err">)</span>
+<span class="err">(o</span><span class="kc">n</span><span class="w"> </span><span class="err">b</span><span class="mi">6</span><span class="w"> </span><span class="err">b</span><span class="mi">4</span><span class="err">))</span>
+<span class="err">)</span>
+<span class="err">)</span>
 </pre></div>
 </div>
 <p>The figure below shows the initial state and the goal state of the problem.</p>
