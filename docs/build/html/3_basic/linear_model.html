@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. Motor Speed &mdash; CPSim 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CPSim
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_install.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_basic.html">Built-in Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_advanced.html">Custom Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_api.html">APIs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CPSim</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">1. Motor Speed </li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/3_basic/linear_model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>System</p></th>
+<th class="head"><p># States</p></th>
+<th class="head"><p># control inputs</p></th>
+<th class="head"><p># outputs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#motor-speed">Motor Speed</a></p></td>
+<td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rlc-circuit">RLC Circuit</a></p></td>
+<td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#aircraft-pitch">Aircraft Pitch</a></p></td>
+<td><p>3</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quadrotor">Quadrotor</a></p></td>
+<td><p>12</p></td>
+<td><p>4</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<section id="motor-speed-1">
+<span id="motor-speed"></span><h1>1. Motor Speed <a class="footnote-reference brackets" href="#id6" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="headerlink" href="#motor-speed-1" title="Link to this heading"></a></h1>
+<p>A common actuator in control systems is the DC motor. It directly provides rotary motion and, coupled with wheels or drums and cables, can provide translational motion. The electric equivalent circuit of the armature and the free-body diagram of the rotor are shown in the following figure.</p>
+<a class="reference internal image-reference" href="3_basic/images/3_basic/motor.png"><img alt="DC motor" class="align-center" src="3_basic/images/3_basic/motor.png" style="width: 300px;" /></a>
+<p>State-space model:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+\frac{d}{d t}\left[\begin{array}{c}
+\dot{\theta} \\
+i
+\end{array}\right]=\left[\begin{array}{cc}
+-\frac{b}{J} &amp; \frac{K}{J} \\
+-\frac{K}{L} &amp; -\frac{R}{L}
+\end{array}\right]\left[\begin{array}{l}
+\dot{\theta} \\
+i
+\end{array}\right]+\left[\begin{array}{c}
+0 \\
+\frac{1}{L}
+\end{array}\right] V \\
+y=\left[\begin{array}{ll}
+1 &amp; 0
+\end{array}\right]\left[\begin{array}{l}
+\dot{\theta} \\
+i
+\end{array}\right]
+\end{gathered}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta\)</span> is the angular position of the motor shaft, <span class="math notranslate nohighlight">\(i\)</span> is the current through the motor, <span class="math notranslate nohighlight">\(V\)</span> is the voltage applied to the motor, <span class="math notranslate nohighlight">\(J=0.01 kg.m^2\)</span> is the moment of inertia of the motor, <span class="math notranslate nohighlight">\(b=0.1 N.m.s\)</span> is the motor viscous friction constant, <span class="math notranslate nohighlight">\(K=0.01 N.m/Amp\)</span> is the motor torque constant, and <span class="math notranslate nohighlight">\(R=1 Ohm\)</span> and <span class="math notranslate nohighlight">\(L0.5 H\)</span> are the electrical resistance and inductance of the motor, respectively.</p>
+</section>
+<section id="rlc-circuit-2">
+<span id="rlc-circuit"></span><h1>2. RLC Circuit <a class="footnote-reference brackets" href="#id7" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="headerlink" href="#rlc-circuit-2" title="Link to this heading"></a></h1>
+<p>A basic RLC circuit contains a resistor, an inductor, and a capacitor connected in series. An adjustable voltage source is connected to form a closed loop circuit. The system dynamics are modeled by the right equation such that state <span class="math notranslate nohighlight">\(x_1\)</span>
+denotes the voltage across the capacitor and state <span class="math notranslate nohighlight">\(x_2\)</span> denotes the electric current in the loop. The
+control input <span class="math notranslate nohighlight">\(u\)</span> is considered the voltage of the voltage source.</p>
+<a class="reference internal image-reference" href="3_basic/images/3_basic/rlc.png"><img alt="RLC" class="align-center" src="3_basic/images/3_basic/rlc.png" style="width: 100px;" /></a>
+<p>State-space model:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+\left[\begin{array}{c}
+\dot{x}_1 \\
+\dot{x}_2
+\end{array}\right]=\left[\begin{array}{cc}
+0 &amp; \frac{1}{C} \\
+-\frac{1}{L} &amp; -\frac{R}{L}
+\end{array}\right]\left[\begin{array}{l}
+x_1 \\
+x_2
+\end{array}\right]+\left[\begin{array}{c}
+0 \\
+\frac{1}{L}
+\end{array}\right] u
+\end{gathered}\end{split}\]</div>
+</section>
+<section id="aircraft-pitch-2">
+<span id="aircraft-pitch"></span><h1>3. Aircraft Pitch <a class="footnote-reference brackets" href="#id7" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="headerlink" href="#aircraft-pitch-2" title="Link to this heading"></a></h1>
+<p>The system ODE describes the longitudinal dynamics of motion for the aircraft. The <span class="math notranslate nohighlight">\(x_1\)</span> denotes the angle of attack,
+<span class="math notranslate nohighlight">\(x_2\)</span> denotes the pitch rate, and <span class="math notranslate nohighlight">\(x_3\)</span> denotes the pitch angle. The control input <span class="math notranslate nohighlight">\(u\)</span> is the elevator deflection angle.</p>
+<a class="reference internal image-reference" href="3_basic/images/3_basic/aircraftpitch.png"><img alt="Aircraft Pitch" class="align-center" src="3_basic/images/3_basic/aircraftpitch.png" style="width: 300px;" /></a>
+<p>State-space model:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+\left[\begin{array}{l}
+\dot{x}_1 \\
+\dot{x}_2 \\
+\dot{x}_3
+\end{array}\right]=\left[\begin{array}{ccc}
+-0.313 &amp; 56.7 &amp; 0 \\
+-0.0139 &amp; -0.426 &amp; 0 \\
+0 &amp; 56.7 &amp; 0
+\end{array}\right]\left[\begin{array}{l}
+x_1 \\
+x_2 \\
+x_3
+\end{array}\right]+\left[\begin{array}{c}
+0.232 \\
+0.0203 \\
+0
+\end{array}\right] u
+\end{gathered}\end{split}\]</div>
+</section>
+<section id="quadrotor-3">
+<span id="quadrotor"></span><h1>4. Quadrotor <a class="footnote-reference brackets" href="#id8" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a><a class="headerlink" href="#quadrotor-3" title="Link to this heading"></a></h1>
+<p>We consider a linear quadrotor model described in <a class="footnote-reference brackets" href="#id8" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>. The system consists of 12 state variables: <span class="math notranslate nohighlight">\((x, y, z)\)</span>
+denotes the (relative) position, <span class="math notranslate nohighlight">\((𝜙, θ, ψ)\)</span> denotes the angles of roll, pitch and yaw respectively, <span class="math notranslate nohighlight">\((u, v, w)\)</span> and <span class="math notranslate nohighlight">\((p, q, r)\)</span> are the velocity and angular velocity of the quadrotor. The controller
+produces 4 inputs which are ft: total thrust, and <span class="math notranslate nohighlight">\([τ_x, τ_y, τ_z]\)</span> control torques caused by differences of rotor speeds.</p>
+<a class="reference internal image-reference" href="3_basic/images/3_basic/quadrotor.png"><img alt="DC motor" class="align-center" src="3_basic/images/3_basic/quadrotor.png" style="width: 300px;" /></a>
+<p>References:</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id6" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://ctms.engin.umich.edu/CTMS/index.php?example=MotorSpeed§ion=SystemModeling">Control Tutorials for MATLAB and Simulink - Motor Speed: System Modeling. (n.d.).</a></p>
+</aside>
+<aside class="footnote brackets" id="id7" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
+<p><a class="reference external" href="https://ctms.engin.umich.edu/CTMS/index.php?example=AircraftPitch&amp;section=ControlPID">Aircraft Pitch: PID Controller Design.</a></p>
+</aside>
+<aside class="footnote brackets" id="id8" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id4">1</a>,<a role="doc-backlink" href="#id5">2</a>)</span>
+<p><a class="reference external" href="https://www.kth.se/polopoly_fs/1.588039.1600688317!/Thesis%20KTH%20-%20Francesco%20Sabatino.pdf">Quadrotor control:modeling,nonlinear controldesign,and simulation.</a></p>
+</aside>
+</aside>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, CPSim Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Built-in Components &mdash; CPSim 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Custom Components" href="4_advanced.html" />
+    <link rel="prev" title="Get Started" href="2_install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            CPSim
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_install.html">Get Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Built-in Components</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linear-system-models">Linear System Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#motor-speed-1">1. Motor Speed [1]_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rlc-circuit-2">2. RLC Circuit [2]_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aircraft-pitch-2">3. Aircraft Pitch [2]_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quadrotor-3">4. Quadrotor </a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nonlinear-system-models">Nonlinear System Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">1. Quadrotor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vessel">2. Vessel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pendulum">3. Pendulum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cstr">4. CSTR</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#controllers">Controllers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pid">PID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lqr">LQR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mpc">MPC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#formal-methods">Formal Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#safety-analysis">Safety Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reachability-analysis-for-linear-systems">Reachability Analysis for Linear Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#state-estimate-reconstruction">State Estimate Reconstruction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deadline-estimation">Deadline Estimation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#noise-disturbance">Noise / Disturbance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attack-simulator">Attack Simulator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="4_advanced.html">Custom Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_api.html">APIs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CPSim</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Built-in Components</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/3_basic.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="built-in-components">
+<h1>Built-in Components<a class="headerlink" href="#built-in-components" title="Link to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This page is under construction and will be ready later.</p>
+</div>
+<section id="linear-system-models">
+<h2>Linear System Models<a class="headerlink" href="#linear-system-models" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>System</p></th>
+<th class="head"><p># States</p></th>
+<th class="head"><p># control inputs</p></th>
+<th class="head"><p># outputs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#motor-speed">Motor Speed</a></p></td>
+<td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#rlc-circuit">RLC Circuit</a></p></td>
+<td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#aircraft-pitch">Aircraft Pitch</a></p></td>
+<td><p>3</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quadrotor">Quadrotor</a></p></td>
+<td><p>12</p></td>
+<td><p>4</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<section id="motor-speed-1">
+<span id="motor-speed"></span><h3>1. Motor Speed <a href="#id13"><span class="problematic" id="id1">[1]_</span></a><a class="headerlink" href="#motor-speed-1" title="Link to this heading"></a></h3>
+<p>A common actuator in control systems is the DC motor. It directly provides rotary motion and, coupled with wheels or drums and cables, can provide translational motion. The electric equivalent circuit of the armature and the free-body diagram of the rotor are shown in the following figure.</p>
+<a class="reference internal image-reference" href="_images/motor.png"><img alt="DC motor" class="align-center" src="_images/motor.png" style="width: 300px;" /></a>
+<p>State-space model:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+\frac{d}{d t}\left[\begin{array}{c}
+\dot{\theta} \\
+i
+\end{array}\right]=\left[\begin{array}{cc}
+-\frac{b}{J} &amp; \frac{K}{J} \\
+-\frac{K}{L} &amp; -\frac{R}{L}
+\end{array}\right]\left[\begin{array}{l}
+\dot{\theta} \\
+i
+\end{array}\right]+\left[\begin{array}{c}
+0 \\
+\frac{1}{L}
+\end{array}\right] V \\
+y=\left[\begin{array}{ll}
+1 &amp; 0
+\end{array}\right]\left[\begin{array}{l}
+\dot{\theta} \\
+i
+\end{array}\right]
+\end{gathered}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta\)</span> is the angular position of the motor shaft, <span class="math notranslate nohighlight">\(i\)</span> is the current through the motor, <span class="math notranslate nohighlight">\(V\)</span> is the voltage applied to the motor, <span class="math notranslate nohighlight">\(J=0.01 kg.m^2\)</span> is the moment of inertia of the motor, <span class="math notranslate nohighlight">\(b=0.1 N.m.s\)</span> is the motor viscous friction constant, <span class="math notranslate nohighlight">\(K=0.01 N.m/Amp\)</span> is the motor torque constant, and <span class="math notranslate nohighlight">\(R=1 Ohm\)</span> and <span class="math notranslate nohighlight">\(L0.5 H\)</span> are the electrical resistance and inductance of the motor, respectively.</p>
+</section>
+<section id="rlc-circuit-2">
+<span id="rlc-circuit"></span><h3>2. RLC Circuit <a href="#id14"><span class="problematic" id="id2">[2]_</span></a><a class="headerlink" href="#rlc-circuit-2" title="Link to this heading"></a></h3>
+<p>A basic RLC circuit contains a resistor, an inductor, and a capacitor connected in series. An adjustable voltage source is connected to form a closed loop circuit. The system dynamics are modeled by the right equation such that state <span class="math notranslate nohighlight">\(x_1\)</span>
+denotes the voltage across the capacitor and state <span class="math notranslate nohighlight">\(x_2\)</span> denotes the electric current in the loop. The
+control input <span class="math notranslate nohighlight">\(u\)</span> is considered the voltage of the voltage source.</p>
+<a class="reference internal image-reference" href="_images/rlc.png"><img alt="RLC" class="align-center" src="_images/rlc.png" style="width: 100px;" /></a>
+<p>State-space model:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+\left[\begin{array}{c}
+\dot{x}_1 \\
+\dot{x}_2
+\end{array}\right]=\left[\begin{array}{cc}
+0 &amp; \frac{1}{C} \\
+-\frac{1}{L} &amp; -\frac{R}{L}
+\end{array}\right]\left[\begin{array}{l}
+x_1 \\
+x_2
+\end{array}\right]+\left[\begin{array}{c}
+0 \\
+\frac{1}{L}
+\end{array}\right] u
+\end{gathered}\end{split}\]</div>
+</section>
+<section id="aircraft-pitch-2">
+<span id="aircraft-pitch"></span><h3>3. Aircraft Pitch <a href="#id15"><span class="problematic" id="id3">[2]_</span></a><a class="headerlink" href="#aircraft-pitch-2" title="Link to this heading"></a></h3>
+<p>The system ODE describes the longitudinal dynamics of motion for the aircraft. The <span class="math notranslate nohighlight">\(x_1\)</span> denotes the angle of attack,
+<span class="math notranslate nohighlight">\(x_2\)</span> denotes the pitch rate, and <span class="math notranslate nohighlight">\(x_3\)</span> denotes the pitch angle. The control input <span class="math notranslate nohighlight">\(u\)</span> is the elevator deflection angle.</p>
+<a class="reference internal image-reference" href="_images/aircraftpitch.png"><img alt="Aircraft Pitch" class="align-center" src="_images/aircraftpitch.png" style="width: 300px;" /></a>
+<p>State-space model:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+\left[\begin{array}{l}
+\dot{x}_1 \\
+\dot{x}_2 \\
+\dot{x}_3
+\end{array}\right]=\left[\begin{array}{ccc}
+-0.313 &amp; 56.7 &amp; 0 \\
+-0.0139 &amp; -0.426 &amp; 0 \\
+0 &amp; 56.7 &amp; 0
+\end{array}\right]\left[\begin{array}{l}
+x_1 \\
+x_2 \\
+x_3
+\end{array}\right]+\left[\begin{array}{c}
+0.232 \\
+0.0203 \\
+0
+\end{array}\right] u
+\end{gathered}\end{split}\]</div>
+</section>
+<section id="quadrotor-3">
+<span id="quadrotor"></span><h3>4. Quadrotor <a class="footnote-reference brackets" href="#id8" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a><a class="headerlink" href="#quadrotor-3" title="Link to this heading"></a></h3>
+<p>We consider a linear quadrotor model described in <a class="footnote-reference brackets" href="#id8" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>. The system consists of 12 state variables: <span class="math notranslate nohighlight">\((x, y, z)\)</span>
+denotes the (relative) position, <span class="math notranslate nohighlight">\((𝜙, θ, ψ)\)</span> denotes the angles of roll, pitch and yaw respectively, <span class="math notranslate nohighlight">\((u, v, w)\)</span> and <span class="math notranslate nohighlight">\((p, q, r)\)</span> are the velocity and angular velocity of the quadrotor. The controller
+produces 4 inputs which are ft: total thrust, and <span class="math notranslate nohighlight">\([τ_x, τ_y, τ_z]\)</span> control torques caused by differences of rotor speeds.</p>
+<a class="reference internal image-reference" href="_images/quadrotor.png"><img alt="DC motor" class="align-center" src="_images/quadrotor.png" style="width: 300px;" /></a>
+<p>References:</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id6" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://ctms.engin.umich.edu/CTMS/index.php?example=MotorSpeed§ion=SystemModeling">Control Tutorials for MATLAB and Simulink - Motor Speed: System Modeling. (n.d.).</a></p>
+</aside>
+<aside class="footnote brackets" id="id7" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://ctms.engin.umich.edu/CTMS/index.php?example=AircraftPitch&amp;section=ControlPID">Aircraft Pitch: PID Controller Design.</a></p>
+</aside>
+<aside class="footnote brackets" id="id8" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id4">1</a>,<a role="doc-backlink" href="#id5">2</a>)</span>
+<p><a class="reference external" href="https://www.kth.se/polopoly_fs/1.588039.1600688317!/Thesis%20KTH%20-%20Francesco%20Sabatino.pdf">Quadrotor control:modeling,nonlinear controldesign,and simulation.</a></p>
+</aside>
+</aside>
+</section>
+</section>
+<section id="nonlinear-system-models">
+<h2>Nonlinear System Models<a class="headerlink" href="#nonlinear-system-models" title="Link to this heading"></a></h2>
+<section id="id9">
+<h3>1. Quadrotor<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>The nonlinear dynamics of the quadrotor relate its attitude and position with 12 states same as the linear quadrotor model above.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+ \begin{array}{ll}
+ \dot{\phi}=w_\phi, &amp; \dot{w}_\phi=\frac{\tau_\phi}{I_x}+\dot{\theta} \dot{\psi}\left(\frac{I_y-I_z}{I_x}\right) \\
+ \dot{\theta}=w_\theta, &amp; \dot{w}_\theta=\frac{\tau_\theta}{I_y}+\dot{\phi} \dot{\psi}\left(\frac{I_z-I_x}{I_y}\right) \\
+ \dot{\psi}=w_\psi, &amp; \dot{w}_\psi=\frac{\tau_\psi}{I_z}+\dot{\phi} \dot{\theta}\left(\frac{I_x-I_y}{I_z}\right) \\
+ \dot{x}=v_x, &amp; \dot{v}_x=\frac{f_t}{m}(\cos (\phi) \sin (\theta) \cos (\psi)+\sin (\phi) \sin (\psi) \\
+ \dot{y}=v_y, &amp; \dot{v}_y=\frac{f_t}{m}(\cos (\phi) \sin (\theta) \sin (\psi)-\sin (\phi) \cos (\psi)) \\
+ \dot{z}=v_z, &amp; \dot{v}_z=\frac{f_t}{m} \cos (\phi) \cos (\theta)-g
+ \end{array}
+\end{gathered}\end{split}\]</div>
+</section>
+<section id="vessel">
+<h3>2. Vessel<a class="headerlink" href="#vessel" title="Link to this heading"></a></h3>
+<p>The vessel dynamics characterize a standard ship with 3 degrees of freedom. The state-space model is derived from the Marine Cybernetics lecture notes, and the high-fidelity simulator is based on the NTNU AUR-lab’s development, incorporating Matlab scripts from the VESSELS catalog of the MSS toolbox. The simulator replicates the vessel with essential ship components such as the engine, propeller, and rudder, treating the entire model as a system. The system comprises 8 states, including east and north positions, yaw, their velocities, the angular shaft speed of the propeller, and the DC motor’s current.</p>
+<a class="reference internal image-reference" href="_images/vessel_cybership.png"><img alt="vessel" class="align-center" src="_images/vessel_cybership.png" style="width: 300px;" /></a>
+<p>References:</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id10" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://folk.ntnu.no/assor/Public/2018-08-20%20marcyb.pdf">Marine cybernetics, towards autonomous marine operations and systems.</a></p>
+</aside>
+<aside class="footnote brackets" id="id11" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://onlinelibrary.wiley.com/doi/book/10.1002/9781119994138">Handbook of marine craft hydrodynamics and motion control.</a></p>
+</aside>
+</aside>
+</section>
+<section id="pendulum">
+<h3>3. Pendulum<a class="headerlink" href="#pendulum" title="Link to this heading"></a></h3>
+<p>The dynamics of the inverted pendulum on a cart is described by a nonlinear model. The objective is to stabilize the inverted pendulum towards the upright position by applying force to the cart.
+The cart position is denoted by x, velocity by v, pendulum angle by θ, angular velocity by ω, pendulum mass by m, cart mass by M, pendulum arm by L, gravitational acceleration by g, friction damping on the cart by δ, and control force applied to the cart by u.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+  \begin{array}{ll}
+  \dot{x}=v, \\
+  \dot{v}=\frac{-m^2 L^2 g \cos (\theta) \sin (\theta)+m L^2\left(m L \omega^2 \sin (\theta)-\delta v\right)+m L^2 u}{m L^2\left(M+m\left(1-\cos (\theta)^2\right)\right)} \\
+  \dot{\theta}=\omega  \\
+  \dot{\omega}=\frac{(m+M) m g L \sin (\theta)-m L \cos (\theta)\left(m L \omega^2 \sin (\theta)-\delta v\right)-m L \cos (\theta) u}{m L^2\left(M+m\left(1-\cos (\theta)^2\right)\right)}
+  \end{array}
+\end{gathered}\end{split}\]</div>
+<a class="reference internal image-reference" href="_images/pendulum.png"><img alt="pendulum" class="align-center" src="_images/pendulum.png" style="width: 300px;" /></a>
+</section>
+<section id="cstr">
+<h3>4. CSTR<a class="headerlink" href="#cstr" title="Link to this heading"></a></h3>
+<p>In the dynamics of a CSTR, the exothermic
+reaction of species A → B is analyzed using the concentration
+of A (<span class="math notranslate nohighlight">\(C_A\)</span>) and the reactor temperature (<span class="math notranslate nohighlight">\(T\)</span>) as states. The
+control input is determined by the temperature of the cooling jacket
+(<span class="math notranslate nohighlight">\(T_C\)</span>). The precise dynamics, considering different system parameters are outlined below.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+ \begin{array}{ll}
+ V\dot{C}_A &amp; =q\left(C_{a f}-C_A\right)-k_0 \exp \left(\frac{-E}{R T}\right) V C_A \\
+ \rho C_p V \dot{T} &amp; =\rho C_p q\left(T_f-T\right)+\Delta H k_0 \exp \left(\frac{-E}{R T}\right) V C_A \\
+ &amp; +U A\left(T_C-T\right)
+ \end{array}
+\end{gathered}\end{split}\]</div>
+<a class="reference internal image-reference" href="_images/cstr.png"><img alt="CSTR" class="align-center" src="_images/cstr.png" style="width: 400px;" /></a>
+<p>References:</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id12" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://d1wqtxts1xzle7.cloudfront.net/36872378/nonlinearmodellibrary-libre.pdf?1425595138=&amp;response-content-disposition=inline%3B+filename%3DA_Nonlinear_Model_Library_for_Dynamics_a.pdf&amp;Expires=1701210799&amp;Signature=HIVd2ORsI4t3TogTf0ihSfQ~eHxnSZC2zxiAqqiJU5-t8E1AcS-D7IP2qnTSg9uONV~fBWmwhVwr5YHq3PrzZTchEMWIllVNI3fcMeTMRFU~x-2~yq5q1-TqxQmb0D-sGmVZefapQzDRLWsePOUWFK3rz9kcBljqboInK3Z0qFHiCFK2QPtTyL8hY1aMnkaNuQZkn2lbdQ7wb0vt9lA24~GqBq6yQ9-RbpkRx~Bmd9JDAvRTsb4x1zNEyTx4LwuBDtSgF16cn1hFq1rApw3OhPJOFFQOvvez7LkGqizBBowWsUFxlVMviiTan1a4K0vh1vNrckgPe~kheLB9j7ZhHQ__&amp;Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA">A nonlinear model library for dynamics and control.</a></p>
+</aside>
+</aside>
+</section>
+</section>
+<section id="controllers">
+<h2>Controllers<a class="headerlink" href="#controllers" title="Link to this heading"></a></h2>
+<section id="pid">
+<h3>PID<a class="headerlink" href="#pid" title="Link to this heading"></a></h3>
+<p>A proportional–integral–derivative controller (PID controller or three-term controller) is a control loop mechanism employing feedback that is widely used in industrial control systems and a variety of other applications requiring continuously modulated control.</p>
+</section>
+<section id="lqr">
+<h3>LQR<a class="headerlink" href="#lqr" title="Link to this heading"></a></h3>
+<p>The settings of a (regulating) controller governing either a machine or process (like an airplane or chemical reactor) are found by using a mathematical algorithm that minimizes a cost function with weighting factors supplied by a human (engineer). The cost function is often defined as a sum of the deviations of key measurements, like altitude or process temperature, from their desired values. The algorithm thus finds those controller settings that minimize undesired deviations. The magnitude of the control action itself may also be included in the cost function.</p>
+</section>
+<section id="mpc">
+<h3>MPC<a class="headerlink" href="#mpc" title="Link to this heading"></a></h3>
+<p>Model predictive control (MPC) is an optimal control technique in which the calculated control actions minimize a cost function for a constrained dynamical system over a finite, receding, horizon.</p>
+</section>
+</section>
+<section id="formal-methods">
+<h2>Formal Methods<a class="headerlink" href="#formal-methods" title="Link to this heading"></a></h2>
+<section id="safety-analysis">
+<h3>Safety Analysis<a class="headerlink" href="#safety-analysis" title="Link to this heading"></a></h3>
+<p>When applying a sequence of control inputs <span class="math notranslate nohighlight">\(\textbf{u}_0,\dots, \textbf{u}_{T-1} \in \mathcal{U}\)</span> to a physical system,
+the system state evolves according to its dynamics <span class="math notranslate nohighlight">\(\psi\)</span>, i.e., <span class="math notranslate nohighlight">\(\textbf{x}_{t+1} = \psi (\textbf{x}_t,\textbf{u}_t)\)</span>.
+The sequence of evolving states is called emph{State Trajectory} <span class="math notranslate nohighlight">\(\xi\)</span>, where <span class="math notranslate nohighlight">\(\xi_i\)</span> denotes the <span class="math notranslate nohighlight">\(i\)</span>-th state in the trajectory.
+By applying all possible control sequences within <span class="math notranslate nohighlight">\(T\)</span> control steps, we can have all possible state trajectories <span class="math notranslate nohighlight">\(\Xi(\textbf{x}_0,T)\)</span> as
+<span class="math notranslate nohighlight">\(\Xi(\textbf{x}_0,T) = \{\xi:\xi_0=\textbf{x}_0, \xi_{t+1}=\psi (\xi_t,\textbf{u}_t)\}\)</span>,
+where <span class="math notranslate nohighlight">\(\textbf{u}_t \in \mathcal{U}\)</span>, <span class="math notranslate nohighlight">\(t \in \{0,\dots, T-1\}\)</span>, and <span class="math notranslate nohighlight">\(\textbf{x}_0\)</span> is an initial state.
+Then, the reachable set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> includes all possible system states in <span class="math notranslate nohighlight">\(\Xi(\textbf{x}_0,T)\)</span>.</p>
+<p>The <strong>Unsafe State Set</strong> <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is a region within the state space, in which the physical system is unsafe and may cause serious consequences.
+For example, the distance from a vehicle to an obstacle is less than zero where the unsafe state includes all negative distance values.
+The complementary set of <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is the safe state set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>.
+To keep the system safe, the reachable set of a system from a certain initial state <span class="math notranslate nohighlight">\(\textbf{x}_0\)</span> is required not to intersect with the unsafe state set, i.e., <span class="math notranslate nohighlight">\(\mathcal{R}\cap \mathcal{F}= \emptyset\)</span>.
+Unfortunately, it is very expensive to compute the exact reachable set.
+Instead, we usually compute an over-approximation of the reachable set, denoted by <span class="math notranslate nohighlight">\(\bar{\mathcal{R}}\)</span> and <span class="math notranslate nohighlight">\(\bar{\mathcal{R}} \supseteq \mathcal{R}\)</span>.
+If <span class="math notranslate nohighlight">\(\bar{\mathcal{R}} \cap \mathcal{F}=\emptyset\)</span>, then we can guarantee that <span class="math notranslate nohighlight">\(\mathcal{R} \cap \mathcal{F}= \emptyset\)</span>, i.e., the system is guaranteed to be safe.</p>
+</section>
+<section id="reachability-analysis-for-linear-systems">
+<h3>Reachability Analysis for Linear Systems<a class="headerlink" href="#reachability-analysis-for-linear-systems" title="Link to this heading"></a></h3>
+<p>By utilizing the Taylor model-based reachability computation on a
+past state, we can obtain an overapproximate
+estimation of the state at a subsequent time. We begin by taking the
+most recent reliable state, <span class="math notranslate nohighlight">\(x_w\)</span>, as the starting point.
+Next, we analyze the historical control sequence utilized from the time <span class="math notranslate nohighlight">\(t_w\)</span> to <span class="math notranslate nohighlight">\(t_f\)</span> and
+calculate an interval set (or box), <span class="math notranslate nohighlight">\(X\)</span>. This set is guaranteed to contain the system state at <span class="math notranslate nohighlight">\(t_f\)</span>.</p>
+</section>
+<section id="state-estimate-reconstruction">
+<h3>State Estimate Reconstruction<a class="headerlink" href="#state-estimate-reconstruction" title="Link to this heading"></a></h3>
+<p>At time <span class="math notranslate nohighlight">\(t_f\)</span> , the system state estimates
+cannot reflect the actual system states because of sensor
+attacks.  Therefore, the predictor must rebuild the current state
+reachable set <span class="math notranslate nohighlight">\(X_f\)</span> from a reliable <span class="math notranslate nohighlight">\(x_w\)</span> state, as provided
+by the checkpointer.</p>
+<a class="reference internal image-reference" href="_images/start_set_estimation.png"><img alt="State Estimate Reconstruction" class="align-center" src="_images/start_set_estimation.png" style="width: 500px;" /></a>
+</section>
+<section id="deadline-estimation">
+<h3>Deadline Estimation<a class="headerlink" href="#deadline-estimation" title="Link to this heading"></a></h3>
+<p>We conduct reachability analysis to determine a deadline, <span class="math notranslate nohighlight">\(t_d\)</span>, at which point the system may touch the unsafe set.</p>
+<a class="reference internal image-reference" href="_images/deadline_estimation.png"><img alt="Deadline Estimation" class="align-center" src="_images/deadline_estimation.png" style="width: 500px;" /></a>
+</section>
+</section>
+<section id="noise-disturbance">
+<h2>Noise / Disturbance<a class="headerlink" href="#noise-disturbance" title="Link to this heading"></a></h2>
+<p>We have implemented uniform noise.</p>
+</section>
+<section id="attack-simulator">
+<h2>Attack Simulator<a class="headerlink" href="#attack-simulator" title="Link to this heading"></a></h2>
+<p>We consider three attack scenarios: bias, delay, and replay. A bias attack typically involves intentionally introducing systematic errors or biases into a system.
+This type of attack is especially pertinent in systems relying on sensor data or algorithmic decision-making.
+A delay attack focuses on manipulating the timeliness of information within CPSs. The attacker intentionally introduces delays in transmitting vital data or commands, thereby causing a disruption in the regular operation of the system.
+A replay attack entails the capture of valid data transmissions, which are then retransmitted at a later time. The crucial element of this attack lies in the legitimacy of the data itself; however, it is reused or replayed at an unsuitable moment or in an incorrect context.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2_install.html" class="btn btn-neutral float-left" title="Get Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4_advanced.html" class="btn btn-neutral float-right" title="Custom Components" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, CPSim Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

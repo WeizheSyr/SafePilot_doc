@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safety Analysis &mdash; CPSim 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=2709fde1"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CPSim
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_install.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_basic.html">Built-in Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_advanced.html">Custom Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../9_api.html">APIs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CPSim</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Safety Analysis</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/3_basic/formal.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="safety-analysis">
+<h1>Safety Analysis<a class="headerlink" href="#safety-analysis" title="Link to this heading"></a></h1>
+<p>When applying a sequence of control inputs <span class="math notranslate nohighlight">\(\textbf{u}_0,\dots, \textbf{u}_{T-1} \in \mathcal{U}\)</span> to a physical system,
+the system state evolves according to its dynamics <span class="math notranslate nohighlight">\(\psi\)</span>, i.e., <span class="math notranslate nohighlight">\(\textbf{x}_{t+1} = \psi (\textbf{x}_t,\textbf{u}_t)\)</span>.
+The sequence of evolving states is called emph{State Trajectory} <span class="math notranslate nohighlight">\(\xi\)</span>, where <span class="math notranslate nohighlight">\(\xi_i\)</span> denotes the <span class="math notranslate nohighlight">\(i\)</span>-th state in the trajectory.
+By applying all possible control sequences within <span class="math notranslate nohighlight">\(T\)</span> control steps, we can have all possible state trajectories <span class="math notranslate nohighlight">\(\Xi(\textbf{x}_0,T)\)</span> as
+<span class="math notranslate nohighlight">\(\Xi(\textbf{x}_0,T) = \{\xi:\xi_0=\textbf{x}_0, \xi_{t+1}=\psi (\xi_t,\textbf{u}_t)\}\)</span>,
+where <span class="math notranslate nohighlight">\(\textbf{u}_t \in \mathcal{U}\)</span>, <span class="math notranslate nohighlight">\(t \in \{0,\dots, T-1\}\)</span>, and <span class="math notranslate nohighlight">\(\textbf{x}_0\)</span> is an initial state.
+Then, the reachable set <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> includes all possible system states in <span class="math notranslate nohighlight">\(\Xi(\textbf{x}_0,T)\)</span>.</p>
+<p>The <strong>Unsafe State Set</strong> <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is a region within the state space, in which the physical system is unsafe and may cause serious consequences.
+For example, the distance from a vehicle to an obstacle is less than zero where the unsafe state includes all negative distance values.
+The complementary set of <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is the safe state set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span>.
+To keep the system safe, the reachable set of a system from a certain initial state <span class="math notranslate nohighlight">\(\textbf{x}_0\)</span> is required not to intersect with the unsafe state set, i.e., <span class="math notranslate nohighlight">\(\mathcal{R}\cap \mathcal{F}= \emptyset\)</span>.
+Unfortunately, it is very expensive to compute the exact reachable set.
+Instead, we usually compute an over-approximation of the reachable set, denoted by <span class="math notranslate nohighlight">\(\bar{\mathcal{R}}\)</span> and <span class="math notranslate nohighlight">\(\bar{\mathcal{R}} \supseteq \mathcal{R}\)</span>.
+If <span class="math notranslate nohighlight">\(\bar{\mathcal{R}} \cap \mathcal{F}=\emptyset\)</span>, then we can guarantee that <span class="math notranslate nohighlight">\(\mathcal{R} \cap \mathcal{F}= \emptyset\)</span>, i.e., the system is guaranteed to be safe.</p>
+</section>
+<section id="reachability-analysis-for-linear-systems">
+<h1>Reachability Analysis for Linear Systems<a class="headerlink" href="#reachability-analysis-for-linear-systems" title="Link to this heading"></a></h1>
+<p>By utilizing the Taylor model-based reachability computation on a
+past state, we can obtain an overapproximate
+estimation of the state at a subsequent time. We begin by taking the
+most recent reliable state, <span class="math notranslate nohighlight">\(x_w\)</span>, as the starting point.
+Next, we analyze the historical control sequence utilized from the time <span class="math notranslate nohighlight">\(t_w\)</span> to <span class="math notranslate nohighlight">\(t_f\)</span> and
+calculate an interval set (or box), <span class="math notranslate nohighlight">\(X\)</span>. This set is guaranteed to contain the system state at <span class="math notranslate nohighlight">\(t_f\)</span>.</p>
+</section>
+<section id="state-estimate-reconstruction">
+<h1>State Estimate Reconstruction<a class="headerlink" href="#state-estimate-reconstruction" title="Link to this heading"></a></h1>
+<p>At time <span class="math notranslate nohighlight">\(t_f\)</span> , the system state estimates
+cannot reflect the actual system states because of sensor
+attacks.  Therefore, the predictor must rebuild the current state
+reachable set <span class="math notranslate nohighlight">\(X_f\)</span> from a reliable <span class="math notranslate nohighlight">\(x_w\)</span> state, as provided
+by the checkpointer.</p>
+<a class="reference internal image-reference" href="3_basic/images/3_basic/start_set_estimation.png"><img alt="State Estimate Reconstruction" class="align-center" src="3_basic/images/3_basic/start_set_estimation.png" style="width: 500px;" /></a>
+</section>
+<section id="deadline-estimation">
+<h1>Deadline Estimation<a class="headerlink" href="#deadline-estimation" title="Link to this heading"></a></h1>
+<p>We conduct reachability analysis to determine a deadline, <span class="math notranslate nohighlight">\(t_d\)</span>, at which point the system may touch the unsafe set.</p>
+<a class="reference internal image-reference" href="3_basic/images/3_basic/deadline_estimation.png"><img alt="Deadline Estimation" class="align-center" src="3_basic/images/3_basic/deadline_estimation.png" style="width: 500px;" /></a>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, CPSim Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; CPSim 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Get Started" href="2_install.html" />
+    <link rel="prev" title="Welcome to CPSim’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            CPSim
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cyber-physical-systems-cps">Cyber-Physical Systems (CPS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview-of-the-toolboox">Overview of the toolboox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#components-of-the-toolbox">Components of the toolbox</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plant-simulators">Plant simulators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#controllers">Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#observers">Observers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#online-reachability-analysis">Online Reachability Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#noise-and-attacks">Noise and Attacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#supporting-components">Supporting Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements-and-customizability">Requirements and Customizability</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#high-extendibility">High extendibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#high-flexibility">High flexibility</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2_install.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_basic.html">Built-in Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_advanced.html">Custom Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_api.html">APIs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CPSim</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/1_intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<section id="cyber-physical-systems-cps">
+<h2>Cyber-Physical Systems (CPS)<a class="headerlink" href="#cyber-physical-systems-cps" title="Link to this heading"></a></h2>
+<p>Cyber-physical systems (CPSs) seamlessly integrate computational resources and physical components with sensing and actuation. The integration expands the capability of these critical components and services in numerous domains, such as healthcare, aviation, transportation, and manufacturing. Despite the benefits, attacks targeted at CPSs can effortlessly cause severe consequences that damage economic interests, endanger personal safety, and disrupt social order.</p>
+<a class="reference internal image-reference" href="_images/cps.png"><img alt="Cyber-Physical Systems in Real World" class="align-center" src="_images/cps.png" style="width: 400px;" /></a>
+<p>Urgent needs to secure CPSs motivated many defense mechanisms. Attack detectors aim at identifying attacks at the earliest time, and attack recovery methods try to eliminate the impact caused by these attacks and even steer the system’s physical states to a target set.
+However, there are few solutions that help to evaluate the efficacy and efficiency of these security countermeasurements due to the following challenges:
+(i) tremendous efforts are required to collect benchmark plants, design controllers, customize attacks, build defense approaches, and evaluate these approaches.
+(ii) the existing solutions are difficult to add new features or integrate with existing simulators.
+(iii) besides cyber states, the physical behavior of systems also requires to be simulated.</p>
+<p>To address these challenges, we develop a simulation and security toolbox with high extendibility and flexibility. One can easily switch between different experiment settings and apply defense prototypes responding to different attacks.
+The source code is available at our <a class="reference external" href="https://github.com/lion-zhang/CPSim">GitHub repository</a>.</p>
+</section>
+<section id="overview-of-the-toolboox">
+<h2>Overview of the toolboox<a class="headerlink" href="#overview-of-the-toolboox" title="Link to this heading"></a></h2>
+<p>The proposed toolbox includes a CPS simulator and a set of security tools. As shown in the figure below, the simulator mimics the behavior of a CPS: Sensors measure system states and forward measurements to observers. Meanwhile, the measurements could suffer from external uncertainties and attacks to meet experiment needs. On the basis of them, the observers are responsible for providing state estimates for the controllers. Then, the controllers generate control input to be implemented in physical plants. Plant simulators update system states according to system dynamics and control input. To secure CPS, various attack detectors and real-time attack recovery controllers are included to respond to those attacks.</p>
+<a class="reference internal image-reference" href="_images/framework.png"><img alt="Design Overview of Simulation and Security Toolbox" class="align-center" src="_images/framework.png" style="width: 400px;" /></a>
+</section>
+<section id="components-of-the-toolbox">
+<h2>Components of the toolbox<a class="headerlink" href="#components-of-the-toolbox" title="Link to this heading"></a></h2>
+<p>The toolbox includes the following components:</p>
+<section id="plant-simulators">
+<h3>Plant simulators<a class="headerlink" href="#plant-simulators" title="Link to this heading"></a></h3>
+<p>The toolbox provides some out-of-the-box CPS benchmarks from different domains.
+<em>Linear benchmarks</em> are defined using state-space linear time-invariant (LTI) models, including the F16 fighting falcon, serial RLC circuit, motor speed, etc.
+<em>Nonlinear benchmarks</em> are defined by order differential equations (ODEs), including continuous stirred tank reactor, inverted pendulum, quadrotor, etc.
+It is simple to switch between all these benchmark plants with controllers by modifying the configuration file.</p>
+</section>
+<section id="controllers">
+<h3>Controllers<a class="headerlink" href="#controllers" title="Link to this heading"></a></h3>
+<p>The toolbox integrates common <em>nominal controllers</em>, such as PID, LQR, and MPC controllers. It is convenient to complete various control tasks, such as cruise control and lane keeping in an autonomous vehicle, using those nominal controllers with appropriate parameters.
+In addition, the toolbox also supports <em>real-time attack-recovery controllers</em>, which take over the system after identifying an attack. The controllers can generate a recovery control sequence that steers CPS’s physical states back to a target set after an attack. The recovery controllers rely on the formal method component.</p>
+</section>
+<section id="observers">
+<h3>Observers<a class="headerlink" href="#observers" title="Link to this heading"></a></h3>
+<p>Some controllers rely on state estimates calculated from sensor measurements by observers. The toolbox provides common observers, such as the Kalman filter for linear systems and extended Kalman filter for nonlinear systems. In most cases, we obtain the ground-truth states from the simulators directly, and the observers then become optional.</p>
+</section>
+<section id="online-reachability-analysis">
+<h3>Online Reachability Analysis<a class="headerlink" href="#online-reachability-analysis" title="Link to this heading"></a></h3>
+<p>Reachability analyses predict system’s reachable states, all possible physical states at subsequent control steps. If reachable states do not intersect with an unsafe set, the safety property must be satisfied. The toolbox contains efficient approaches to online reachability analysis. For linear systems, it leverages the properties of linear transformation of the zonotope and the support function method. For nonlinear systems, it uses interval arithmetic. In addition, the toolbox supports other formal representations, such as half-space and strip, to express unsafe and target state sets. Moreover, it also supports operations on Gaussian distributions to deal with stochastic systems.</p>
+</section>
+<section id="noise-and-attacks">
+<h3>Noise and Attacks<a class="headerlink" href="#noise-and-attacks" title="Link to this heading"></a></h3>
+<p>The toolbox simulates the ubiquitous noise or disturbance in real systems. The uncertainty may follow bounded uniform distributions, unbounded Gaussian distributions, etc.
+Besides, the toolbox simulates attacks that compromise the integrity or availability of sensor measurements, such as bias, replay, and delay attacks.</p>
+</section>
+<section id="supporting-components">
+<h3>Supporting Components<a class="headerlink" href="#supporting-components" title="Link to this heading"></a></h3>
+<p>The timer device simulates the system clock and activates control steps. The logger checkpoints historical data, such as the state estimate, sensor measurement, and control input, and prints the necessary debug information. The toolbox also reserves the interface for different attack detectors, such as CUSUM, chi-square.</p>
+</section>
+</section>
+<section id="requirements-and-customizability">
+<h2>Requirements and Customizability<a class="headerlink" href="#requirements-and-customizability" title="Link to this heading"></a></h2>
+<p>The toolbox is implemented in Python 3, and thus can be installed in various operating systems with a Python environment. The main dependencies are scipy, numpy and cvxpy packages. Moreover, it is convenient to carry out secondary development because of two aspects:</p>
+<section id="high-extendibility">
+<h3>High extendibility<a class="headerlink" href="#high-extendibility" title="Link to this heading"></a></h3>
+<p>The toolbox is written in a modular fashion, and each component is organized into a package. Thus, it is easy to extend its built-in functions or add new features. For example, users can add a new CPS according to their needs by modifying the system dynamics and controllers from the template file.</p>
+</section>
+<section id="high-flexibility">
+<h3>High flexibility<a class="headerlink" href="#high-flexibility" title="Link to this heading"></a></h3>
+<p>Besides numerical simulations, the toolbox can be easily deployed in common high-fidelity simulators, such as AirSim and CARLA. Also, it can be integrated into the Robot operating system (ROS), a set of open-source software libraries and tools for building robot applications. Thus, the toolbox is effortlessly deployed in real robots or CPS testbeds.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to CPSim’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2_install.html" class="btn btn-neutral float-right" title="Get Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, CPSim Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Started &mdash; CPSim 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Built-in Components" href="3_basic.html" />
+    <link rel="prev" title="Introduction" href="1_intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            CPSim
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Get Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#minimum-simulation">Minimum Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-concepts">Basic Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cyber-physical-system-cps">Cyber-Physical System (CPS)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#q-a">Q&amp;A</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3_basic.html">Built-in Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_advanced.html">Custom Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_api.html">APIs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CPSim</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Get Started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/2_install.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="get-started">
+<h1>Get Started<a class="headerlink" href="#get-started" title="Link to this heading"></a></h1>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>We recommend installing CPSim in a virtual environment.
+Please refer to <a class="reference external" href="https://docs.anaconda.com/free/anaconda/install/index.html">Anaconda Documentation</a> for more information.
+After activating your virtual environment, install CPSim using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>cpsim
+</pre></div>
+</div>
+<p>(Optional) If you want to use interval arithmetic, install CPSim with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>cpsim<span class="o">[</span>interval<span class="o">]</span>
+</pre></div>
+</div>
+<p>This will install pyinterval dependency, but only works on Linux.</p>
+</section>
+<section id="minimum-simulation">
+<h2>Minimum Simulation<a class="headerlink" href="#minimum-simulation" title="Link to this heading"></a></h2>
+<p>After installing CPSim, you can write the following code to simulate the behaviours of a continuous stirred tank reactor.</p>
+<p>First, we import a built-in nonlinear CSTR model at Line 3.
+Then, we configure some simulation parameters, such as sampling time <span class="math notranslate nohighlight">\(dt\)</span>, at Lines 6-9.
+At Line 10, we create a simulation object with the model and the parameters.</p>
+<p>The main control loop is at Lines 12-16.
+In each iteration of the loop, it updates the reference state, and evolves the system a sampling time advance.</p>
+<p>After simulation, the reference state, output, system state, and control input are stored in the simulation object.
+Here, we plot the reference state and the output at Lines 26-28.</p>
+</section>
+<section id="basic-concepts">
+<h2>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Link to this heading"></a></h2>
+<section id="cyber-physical-system-cps">
+<h3>Cyber-Physical System (CPS)<a class="headerlink" href="#cyber-physical-system-cps" title="Link to this heading"></a></h3>
+<p>This section shows the system model. In general, a typical CPS architecture is shown in Figure <span class="xref std std-ref">CPS Architecture</span>, including a physical process, controller, sensors, and actuators.
+The controller controls the physical process to maintain the reference (also known as target or desired) states in a periodic and close-loop manner.
+At each <span class="math notranslate nohighlight">\(t^{th}\)</span> control step, sensors measure the state of the physical system and send them to the controller.
+Based on the sensor measurements, the controller obtains the state estimate <span class="math notranslate nohighlight">\(\textbf{x}(t)\)</span> of the physical system and generates control inputs <span class="math notranslate nohighlight">\(\textbf{u}(t)\)</span> according to its control algorithm.
+The control inputs are then sent to actuators who apply <span class="math notranslate nohighlight">\(\textbf{u}(t)\)</span> to supervise the physical system at a desired (or reference) state.
+The state of a physical system or the system state <span class="math notranslate nohighlight">\(\textbf{x}(t)\in \mathcal{R}^n\)</span> is a vector of size <span class="math notranslate nohighlight">\(n\)</span> that represents the number of dimensions of the system state (e.g., velocity, electric current, pressure, etc.). The control inputs <span class="math notranslate nohighlight">\(\textbf{u}(t)\in \mathcal{U}\)</span> is a vector of size <span class="math notranslate nohighlight">\(m\)</span> that represents the number of dimensions of the control input (e.g. steering angle, applied voltage, etc.).
+<span class="math notranslate nohighlight">\(\mathcal{U}\)</span> is the control input range that is usually limited by the actuator’s capability or physical properties, and for instance, the maximum voltage applied on a DC motor is limited by the capacity of the power source.
+Moreover, the symbol <span class="math notranslate nohighlight">\(\textbf{x}(t)\)</span> denotes the state estimate, while <span class="math notranslate nohighlight">\(\bar{\textbf{x}}(t)\)</span> is the real (true) state of the plant. The symbol <span class="math notranslate nohighlight">\(\textbf{u}(t)\)</span> denotes the control input computed by the controller, while <span class="math notranslate nohighlight">\(\bar{\textbf{u}}(t)\)</span> is the real input to the plant. For easy presentation of equations, we sometimes use <span class="math notranslate nohighlight">\(\textbf{x}_t\)</span> or <span class="math notranslate nohighlight">\(\textbf{u}_t\)</span> to denote <span class="math notranslate nohighlight">\(\textbf{x}(t)\)</span> or <span class="math notranslate nohighlight">\(\textbf{u}(t)\)</span>, respectively.</p>
+<a class="reference internal image-reference" href="_images/cps1.png"><img alt="Abstract of CPS Architecture" class="align-center" src="_images/cps1.png" style="width: 400px;" /></a>
+</section>
+<section id="data-structures">
+<h3>Data Structures<a class="headerlink" href="#data-structures" title="Link to this heading"></a></h3>
+<p>In CPSim, we use 1-D numpy array to represent a state, output, or control input.
+The following code shows how these date are initialized in simulation class.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">cpsim/simulator.py</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">68</span> <span class="k">def</span> <span class="nf">data_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">69</span>     <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>   <span class="c1"># control inputs</span>
+<span class="linenos">70</span>     <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>   <span class="c1"># outputs</span>
+<span class="linenos">71</span>     <span class="bp">self</span><span class="o">.</span><span class="n">states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>    <span class="c1"># actual system states</span>
+<span class="linenos">72</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feedback_type</span> <span class="o">==</span> <span class="s1">&#39;output&#39;</span><span class="p">:</span>
+<span class="linenos">73</span>         <span class="bp">self</span><span class="o">.</span><span class="n">feedbacks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>   <span class="c1"># feedbacks, could be compromised</span>
+<span class="linenos">74</span>         <span class="bp">self</span><span class="o">.</span><span class="n">refs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>        <span class="c1"># reference states</span>
+<span class="linenos">75</span>     <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">feedback_type</span> <span class="o">==</span> <span class="s1">&#39;state&#39;</span><span class="p">:</span>
+<span class="linenos">76</span>         <span class="bp">self</span><span class="o">.</span><span class="n">feedbacks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="linenos">77</span>         <span class="bp">self</span><span class="o">.</span><span class="n">refs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>  <span class="c1"># reference value</span>
+</pre></div>
+</div>
+</div>
+<p>Thus, after simulation is done, you can access the data through the simulation object.
+In <span class="xref std std-ref">1_CSTR_simulation.py</span>, we show how to access these data at Lines 20-24.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In NumPy, the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> operator means matrix multiplication (Python&gt;=3.5).
+We assume <span class="math notranslate nohighlight">\(b\)</span> is a 1-D numpy array, and <span class="math notranslate nohighlight">\(B\)</span> is a 2-D numpy array.
+Then, <span class="math notranslate nohighlight">\(b\)</span> is a row vector in <code class="docutils literal notranslate"><span class="pre">b&#64;B</span></code>, and <span class="math notranslate nohighlight">\(b\)</span> is a column vector in <code class="docutils literal notranslate"><span class="pre">B&#64;b</span></code>.
+Thus, 1-D numpy array can be used to represent both row and column vectors in matrix multiplication.</p>
+</div>
+</section>
+<section id="q-a">
+<h3>Q&amp;A<a class="headerlink" href="#q-a" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>TypeError: ‘max_iters’ is an invalid keyword argument for this function</p></li>
+</ol>
+<p>Line 149 in src/cpsim/controllers/LP_cvxpy.py
+“max_iter” to “max_iters” or “max_iters” to “max_iter”</p>
+<ol class="arabic simple" start="2">
+<li><p>NameError: name ‘imath’ is not defined</p></li>
+</ol>
+<p>go to “anaconda3/envs/demo3/lib/python3.8/site-packages/cpsim/models/nonlinear/vessel.py” in your anaconda’s path
+add “from interval import imath, interval” in line 8.</p>
+<ol class="arabic simple" start="3">
+<li><p>Meet an error from plot?</p></li>
+</ol>
+<p>Try to enlarge the max_index in settings.py.</p>
+<ol class="arabic simple" start="4">
+<li><p>Solver failed?</p></li>
+</ol>
+<p>Sorry, somtimes our methods can’t solve the problem. Please change the settings.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1_intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="3_basic.html" class="btn btn-neutral float-right" title="Built-in Components" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, CPSim Developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
