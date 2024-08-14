@@ -54,8 +54,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#minimum-simulation">Minimum Simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basic-concepts">Basic Concepts</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#cyber-physical-system-cps">Cyber-Physical System (CPS)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data-structures">Data Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#first-order-logic-fol">First-order logic (FOL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linear-temporal-logic-ltl">Linear temporal logic (LTL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#z3">Z3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spot">Spot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#q-a">Q&amp;A</a></li>
 </ul>
 </li>
@@ -95,17 +97,21 @@
 <h1>Get Started<a class="headerlink" href="#get-started" title="Link to this heading"></a></h1>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<p>We recommend installing CPSim in a virtual environment.
-Please refer to <a class="reference external" href="https://docs.anaconda.com/free/anaconda/install/index.html">Anaconda Documentation</a> for more information.
-After activating your virtual environment, install CPSim using the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>cpsim
+<p>We recommend using SafePilot via Docker.
+Please refer to <a class="reference external" href="https://docs.docker.com/">Docker Documentation</a> for more information.
+After activating docker on your computer, install SafePilot using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>safepilot
 </pre></div>
 </div>
-<p>(Optional) If you want to use interval arithmetic, install CPSim with the following command:</p>
+<p>(Optional)
+If you prefer to manually configure the environment, we recommend setting it up within a virtual environment.
+Please refer to <a class="reference external" href="https://docs.anaconda.com/free/anaconda/install/index.html/">Anaconda Documentation</a> for more information. After activating your virtual environment, install the required packages using the following command:</p>
+<blockquote>
+<div><p>install CPSim with the following command:</p>
+</div></blockquote>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>cpsim<span class="o">[</span>interval<span class="o">]</span>
 </pre></div>
 </div>
-<p>This will install pyinterval dependency, but only works on Linux.</p>
 </section>
 <section id="minimum-simulation">
 <h2>Minimum Simulation<a class="headerlink" href="#minimum-simulation" title="Link to this heading"></a></h2>
@@ -120,46 +126,31 @@ Here, we plot the reference state and the output at Lines 26-28.</p>
 </section>
 <section id="basic-concepts">
 <h2>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Link to this heading"></a></h2>
-<section id="cyber-physical-system-cps">
-<h3>Cyber-Physical System (CPS)<a class="headerlink" href="#cyber-physical-system-cps" title="Link to this heading"></a></h3>
-<p>This section shows the system model. In general, a typical CPS architecture is shown in Figure <span class="xref std std-ref">CPS Architecture</span>, including a physical process, controller, sensors, and actuators.
-The controller controls the physical process to maintain the reference (also known as target or desired) states in a periodic and close-loop manner.
-At each <span class="math notranslate nohighlight">\(t^{th}\)</span> control step, sensors measure the state of the physical system and send them to the controller.
-Based on the sensor measurements, the controller obtains the state estimate <span class="math notranslate nohighlight">\(\textbf{x}(t)\)</span> of the physical system and generates control inputs <span class="math notranslate nohighlight">\(\textbf{u}(t)\)</span> according to its control algorithm.
-The control inputs are then sent to actuators who apply <span class="math notranslate nohighlight">\(\textbf{u}(t)\)</span> to supervise the physical system at a desired (or reference) state.
-The state of a physical system or the system state <span class="math notranslate nohighlight">\(\textbf{x}(t)\in \mathcal{R}^n\)</span> is a vector of size <span class="math notranslate nohighlight">\(n\)</span> that represents the number of dimensions of the system state (e.g., velocity, electric current, pressure, etc.). The control inputs <span class="math notranslate nohighlight">\(\textbf{u}(t)\in \mathcal{U}\)</span> is a vector of size <span class="math notranslate nohighlight">\(m\)</span> that represents the number of dimensions of the control input (e.g. steering angle, applied voltage, etc.).
-<span class="math notranslate nohighlight">\(\mathcal{U}\)</span> is the control input range that is usually limited by the actuator’s capability or physical properties, and for instance, the maximum voltage applied on a DC motor is limited by the capacity of the power source.
-Moreover, the symbol <span class="math notranslate nohighlight">\(\textbf{x}(t)\)</span> denotes the state estimate, while <span class="math notranslate nohighlight">\(\bar{\textbf{x}}(t)\)</span> is the real (true) state of the plant. The symbol <span class="math notranslate nohighlight">\(\textbf{u}(t)\)</span> denotes the control input computed by the controller, while <span class="math notranslate nohighlight">\(\bar{\textbf{u}}(t)\)</span> is the real input to the plant. For easy presentation of equations, we sometimes use <span class="math notranslate nohighlight">\(\textbf{x}_t\)</span> or <span class="math notranslate nohighlight">\(\textbf{u}_t\)</span> to denote <span class="math notranslate nohighlight">\(\textbf{x}(t)\)</span> or <span class="math notranslate nohighlight">\(\textbf{u}(t)\)</span>, respectively.</p>
-<a class="reference internal image-reference" href="_images/cps1.png"><img alt="Abstract of CPS Architecture" class="align-center" src="_images/cps1.png" style="width: 400px;" /></a>
+<section id="first-order-logic-fol">
+<h3>First-order logic (FOL)<a class="headerlink" href="#first-order-logic-fol" title="Link to this heading"></a></h3>
+<p>First-Order Logic (FOL), also known as Predicate Logic, is a formal system used in mathematics, philosophy, linguistics, and computer science to express statements about objects and their relationships. FOL extends propositional logic by including quantifiers (like “for all” (∀) and “there exists” (∃)) and predicates, which can express properties of objects and relations between them.
+For more information, please refer to <a class="reference external" href="https://en.wikipedia.org/wiki/First-order_logic/">First-order logic wiki</a>.
+.. This section shows the system model. In general, a typical CPS architecture is shown in Figure <span class="xref std std-ref">CPS Architecture</span>, including a physical process, controller, sensors, and actuators.
+.. The controller controls the physical process to maintain the reference (also known as target or desired) states in a periodic and close-loop manner.
+.. At each <span class="math notranslate nohighlight">\(t^{th}\)</span> control step, sensors measure the state of the physical system and send them to the controller.
+.. Based on the sensor measurements, the controller obtains the state estimate <span class="math notranslate nohighlight">\(\textbf{x}(t)\)</span> of the physical system and generates control inputs <span class="math notranslate nohighlight">\(\textbf{u}(t)\)</span> according to its control algorithm.
+.. The control inputs are then sent to actuators who apply <span class="math notranslate nohighlight">\(\textbf{u}(t)\)</span> to supervise the physical system at a desired (or reference) state.
+.. The state of a physical system or the system state <span class="math notranslate nohighlight">\(\textbf{x}(t)\in \mathcal{R}^n\)</span> is a vector of size <span class="math notranslate nohighlight">\(n\)</span> that represents the number of dimensions of the system state (e.g., velocity, electric current, pressure, etc.). The control inputs <span class="math notranslate nohighlight">\(\textbf{u}(t)\in \mathcal{U}\)</span> is a vector of size <span class="math notranslate nohighlight">\(m\)</span> that represents the number of dimensions of the control input (e.g. steering angle, applied voltage, etc.).
+.. <span class="math notranslate nohighlight">\(\mathcal{U}\)</span> is the control input range that is usually limited by the actuator’s capability or physical properties, and for instance, the maximum voltage applied on a DC motor is limited by the capacity of the power source.
+.. Moreover, the symbol <span class="math notranslate nohighlight">\(\textbf{x}(t)\)</span> denotes the state estimate, while <span class="math notranslate nohighlight">\(\bar{\textbf{x}}(t)\)</span> is the real (true) state of the plant. The symbol <span class="math notranslate nohighlight">\(\textbf{u}(t)\)</span> denotes the control input computed by the controller, while <span class="math notranslate nohighlight">\(\bar{\textbf{u}}(t)\)</span> is the real input to the plant. For easy presentation of equations, we sometimes use <span class="math notranslate nohighlight">\(\textbf{x}_t\)</span> or <span class="math notranslate nohighlight">\(\textbf{u}_t\)</span> to denote <span class="math notranslate nohighlight">\(\textbf{x}(t)\)</span> or <span class="math notranslate nohighlight">\(\textbf{u}(t)\)</span>, respectively.</p>
 </section>
-<section id="data-structures">
-<h3>Data Structures<a class="headerlink" href="#data-structures" title="Link to this heading"></a></h3>
-<p>In CPSim, we use 1-D numpy array to represent a state, output, or control input.
-The following code shows how these date are initialized in simulation class.</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">cpsim/simulator.py</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">68</span> <span class="k">def</span> <span class="nf">data_init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="linenos">69</span>     <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>   <span class="c1"># control inputs</span>
-<span class="linenos">70</span>     <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>   <span class="c1"># outputs</span>
-<span class="linenos">71</span>     <span class="bp">self</span><span class="o">.</span><span class="n">states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>    <span class="c1"># actual system states</span>
-<span class="linenos">72</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feedback_type</span> <span class="o">==</span> <span class="s1">&#39;output&#39;</span><span class="p">:</span>
-<span class="linenos">73</span>         <span class="bp">self</span><span class="o">.</span><span class="n">feedbacks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>   <span class="c1"># feedbacks, could be compromised</span>
-<span class="linenos">74</span>         <span class="bp">self</span><span class="o">.</span><span class="n">refs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>        <span class="c1"># reference states</span>
-<span class="linenos">75</span>     <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">feedback_type</span> <span class="o">==</span> <span class="s1">&#39;state&#39;</span><span class="p">:</span>
-<span class="linenos">76</span>         <span class="bp">self</span><span class="o">.</span><span class="n">feedbacks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="linenos">77</span>         <span class="bp">self</span><span class="o">.</span><span class="n">refs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>  <span class="c1"># reference value</span>
-</pre></div>
-</div>
-</div>
-<p>Thus, after simulation is done, you can access the data through the simulation object.
-In <span class="xref std std-ref">1_CSTR_simulation.py</span>, we show how to access these data at Lines 20-24.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>In NumPy, the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> operator means matrix multiplication (Python&gt;=3.5).
-We assume <span class="math notranslate nohighlight">\(b\)</span> is a 1-D numpy array, and <span class="math notranslate nohighlight">\(B\)</span> is a 2-D numpy array.
-Then, <span class="math notranslate nohighlight">\(b\)</span> is a row vector in <code class="docutils literal notranslate"><span class="pre">b&#64;B</span></code>, and <span class="math notranslate nohighlight">\(b\)</span> is a column vector in <code class="docutils literal notranslate"><span class="pre">B&#64;b</span></code>.
-Thus, 1-D numpy array can be used to represent both row and column vectors in matrix multiplication.</p>
-</div>
+<section id="linear-temporal-logic-ltl">
+<h3>Linear temporal logic (LTL)<a class="headerlink" href="#linear-temporal-logic-ltl" title="Link to this heading"></a></h3>
+<p>Linear Temporal Logic (LTL) is a type of formalism used to describe sequences of events in a temporal (time-based) context. LTL is commonly used in the verification of systems, such as software or hardware, where the order of events matters. LTL includes temporal operators like “G” (Globally, meaning “always”), “F” (Finally, meaning “eventually”), “X” (Next, meaning “in the next state”), and “U” (Until).
+For more information, please refer to <a class="reference external" href="https://en.wikipedia.org/wiki/Linear_temporal_logic/">Linear temporal logic wiki</a>.</p>
+</section>
+<section id="z3">
+<h3>Z3<a class="headerlink" href="#z3" title="Link to this heading"></a></h3>
+<p>Z3 is a theorem prover from Microsoft Research. We utilize the Z3 Python API to verify whether the output of the LLM satisfies the FOL constraints. Please refer to <a class="reference external" href="https://github.com/Z3Prover/z3/">Z3</a> for more information.</p>
+</section>
+<section id="spot">
+<h3>Spot<a class="headerlink" href="#spot" title="Link to this heading"></a></h3>
+<p>Spot is a C++17 library for LTL, ω-automata manipulation and model checking. We utilize the Spot Python API to verify whether the output of the LLM satisfies the LTL constraints. Please refer to <a class="reference external" href="https://spot.lre.epita.fr/index.html/">Spot</a> for more information.</p>
 </section>
 <section id="q-a">
 <h3>Q&amp;A<a class="headerlink" href="#q-a" title="Link to this heading"></a></h3>
@@ -173,14 +164,6 @@ Thus, 1-D numpy array can be used to represent both row and column vectors in ma
 </ol>
 <p>go to “anaconda3/envs/demo3/lib/python3.8/site-packages/cpsim/models/nonlinear/vessel.py” in your anaconda’s path
 add “from interval import imath, interval” in line 8.</p>
-<ol class="arabic simple" start="3">
-<li><p>Meet an error from plot?</p></li>
-</ol>
-<p>Try to enlarge the max_index in settings.py.</p>
-<ol class="arabic simple" start="4">
-<li><p>Solver failed?</p></li>
-</ol>
-<p>Sorry, somtimes our methods can’t solve the problem. Please change the settings.</p>
 </section>
 </section>
 </section>
