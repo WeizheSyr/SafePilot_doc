@@ -11,6 +11,7 @@ After manually checking the correctness of the generated specification, we proce
 The specific problem is as follows.
 
 ::
+    
     (define (problem BW-rand-6)
     (:domain blocksworld-4ops)
     (:objects b1 b2 b3 b4 b5 b6 )

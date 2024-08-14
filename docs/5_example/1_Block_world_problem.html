@@ -84,31 +84,30 @@
 <p>We read the prompt from <code class="docutils literal notranslate"><span class="pre">first_prompt_formula.txt</span></code> and instruct the LLM to generate FOL specifications in the format required by the Z3 Python API.</p>
 <p>After manually checking the correctness of the generated specification, we proceed to request the LLM to generate a plan using prompt from <code class="docutils literal notranslate"><span class="pre">first_prompt_plan.txt</span></code>.</p>
 <p>The specific problem is as follows.</p>
-<dl class="simple">
-<dt>::</dt><dd><p>(define (problem BW-rand-6)
-(:domain blocksworld-4ops)
-(:objects b1 b2 b3 b4 b5 b6 )
-(:init
-(arm-empty)
-(on b1 b6)
-(on b2 b3)
-(on-table b3)
-(on b4 b1)
-(on-table b5)
-(on-table b6)
-(clear b2)
-(clear b4)
-(clear b5)
-)
-(:goal
-(and
-(on b1 b2)
-(on b5 b3)
-(on b6 b4))
-)
-)</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">define</span> <span class="p">(</span><span class="n">problem</span> <span class="n">BW</span><span class="o">-</span><span class="n">rand</span><span class="o">-</span><span class="mi">6</span><span class="p">)</span>
+<span class="p">(:</span><span class="n">domain</span> <span class="n">blocksworld</span><span class="o">-</span><span class="mi">4</span><span class="n">ops</span><span class="p">)</span>
+<span class="p">(:</span><span class="n">objects</span> <span class="n">b1</span> <span class="n">b2</span> <span class="n">b3</span> <span class="n">b4</span> <span class="n">b5</span> <span class="n">b6</span> <span class="p">)</span>
+<span class="p">(:</span><span class="n">init</span>
+<span class="p">(</span><span class="n">arm</span><span class="o">-</span><span class="n">empty</span><span class="p">)</span>
+<span class="p">(</span><span class="n">on</span> <span class="n">b1</span> <span class="n">b6</span><span class="p">)</span>
+<span class="p">(</span><span class="n">on</span> <span class="n">b2</span> <span class="n">b3</span><span class="p">)</span>
+<span class="p">(</span><span class="n">on</span><span class="o">-</span><span class="n">table</span> <span class="n">b3</span><span class="p">)</span>
+<span class="p">(</span><span class="n">on</span> <span class="n">b4</span> <span class="n">b1</span><span class="p">)</span>
+<span class="p">(</span><span class="n">on</span><span class="o">-</span><span class="n">table</span> <span class="n">b5</span><span class="p">)</span>
+<span class="p">(</span><span class="n">on</span><span class="o">-</span><span class="n">table</span> <span class="n">b6</span><span class="p">)</span>
+<span class="p">(</span><span class="n">clear</span> <span class="n">b2</span><span class="p">)</span>
+<span class="p">(</span><span class="n">clear</span> <span class="n">b4</span><span class="p">)</span>
+<span class="p">(</span><span class="n">clear</span> <span class="n">b5</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="p">(:</span><span class="n">goal</span>
+<span class="p">(</span><span class="ow">and</span>
+<span class="p">(</span><span class="n">on</span> <span class="n">b1</span> <span class="n">b2</span><span class="p">)</span>
+<span class="p">(</span><span class="n">on</span> <span class="n">b5</span> <span class="n">b3</span><span class="p">)</span>
+<span class="p">(</span><span class="n">on</span> <span class="n">b6</span> <span class="n">b4</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <p>The figure below shows the initial state and the goal state of the problem.</p>
 <a class="reference internal image-reference" href="5_example/images/5_example/block.png"><img alt="Block World Problem" class="align-center" src="5_example/images/5_example/block.png" style="width: 650px;" /></a>
 </section>
