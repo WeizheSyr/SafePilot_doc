@@ -51,14 +51,6 @@ First-order logic (FOL)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 First-Order Logic (FOL), also known as Predicate Logic, is a formal system used in mathematics, philosophy, linguistics, and computer science to express statements about objects and their relationships. FOL extends propositional logic by including quantifiers (like "for all" (∀) and "there exists" (∃)) and predicates, which can express properties of objects and relations between them.
 For more information, please refer to `First-order logic wiki <https://en.wikipedia.org/wiki/First-order_logic/>`_.
-.. This section shows the system model. In general, a typical CPS architecture is shown in Figure :ref:`CPS Architecture<CPS Architecture>`, including a physical process, controller, sensors, and actuators.
-.. The controller controls the physical process to maintain the reference (also known as target or desired) states in a periodic and close-loop manner.
-.. At each :math:`t^{th}` control step, sensors measure the state of the physical system and send them to the controller.
-.. Based on the sensor measurements, the controller obtains the state estimate :math:`\textbf{x}(t)` of the physical system and generates control inputs :math:`\textbf{u}(t)` according to its control algorithm.
-.. The control inputs are then sent to actuators who apply :math:`\textbf{u}(t)` to supervise the physical system at a desired (or reference) state.
-.. The state of a physical system or the system state :math:`\textbf{x}(t)\in \mathcal{R}^n` is a vector of size :math:`n` that represents the number of dimensions of the system state (e.g., velocity, electric current, pressure, etc.). The control inputs :math:`\textbf{u}(t)\in \mathcal{U}` is a vector of size :math:`m` that represents the number of dimensions of the control input (e.g. steering angle, applied voltage, etc.).
-.. :math:`\mathcal{U}` is the control input range that is usually limited by the actuator's capability or physical properties, and for instance, the maximum voltage applied on a DC motor is limited by the capacity of the power source.
-.. Moreover, the symbol :math:`\textbf{x}(t)` denotes the state estimate, while :math:`\bar{\textbf{x}}(t)` is the real (true) state of the plant. The symbol :math:`\textbf{u}(t)` denotes the control input computed by the controller, while :math:`\bar{\textbf{u}}(t)` is the real input to the plant. For easy presentation of equations, we sometimes use :math:`\textbf{x}_t` or :math:`\textbf{u}_t` to denote :math:`\textbf{x}(t)` or :math:`\textbf{u}(t)`, respectively.
 
 
 Linear temporal logic (LTL)
