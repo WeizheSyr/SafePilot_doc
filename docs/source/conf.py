@@ -6,9 +6,9 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../../src/'))
 
-project = 'CPSim'
-copyright = '2023, CPSim Developers'
-author = 'CPSim Developers'
+project = 'SafePilot'
+copyright = '2024, SafePilot Developers'
+author = 'SafePilot Developers'
 
 release = '0.1'
 version = '0.1.0'

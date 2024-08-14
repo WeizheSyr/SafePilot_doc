@@ -1,9 +1,13 @@
 Introduction
 ============
 
-Cyber-Physical Systems (CPS)
+Large Language Model (LLM)-enabled Cyber-Physical Systems (CPS)
 ----------------------------
-Cyber-physical systems (CPSs) seamlessly integrate computational resources and physical components with sensing and actuation. The integration expands the capability of these critical components and services in numerous domains, such as healthcare, aviation, transportation, and manufacturing. Despite the benefits, attacks targeted at CPSs can effortlessly cause severe consequences that damage economic interests, endanger personal safety, and disrupt social order.
+In recent years, the development of Large Language Models (LLMs) has surged, driven by the advent of the transformer architecture and advancements in computational capabilities.
+Distinct from conventional models that are typically trained on domain-specific datasets, the training process of these LLMs mirrors human learning—gathering knowledge from diverse sources. 
+This approach holds considerable promise for achieving human-like cognitive capabilities.
+
+Cyber-Physical Systems (CPS) represent a fusion of computing, networking, and physical operations. Distinguished by their autonomous and adaptive features, CPS shows a remarkable advancement beyond traditional control systems.
 
 .. image:: images/1_intro/cps.png
    :width: 400 px
@@ -11,68 +15,42 @@ Cyber-physical systems (CPSs) seamlessly integrate computational resources and p
    :alt: Cyber-Physical Systems in Real World
 
 
-Urgent needs to secure CPSs motivated many defense mechanisms. Attack detectors aim at identifying attacks at the earliest time, and attack recovery methods try to eliminate the impact caused by these attacks and even steer the system's physical states to a target set.
-However, there are few solutions that help to evaluate the efficacy and efficiency of these security countermeasurements due to the following challenges:
-(i) tremendous efforts are required to collect benchmark plants, design controllers, customize attacks, build defense approaches, and evaluate these approaches.
-(ii) the existing solutions are difficult to add new features or integrate with existing simulators.
-(iii) besides cyber states, the physical behavior of systems also requires to be simulated.
+Motivated by the advancements in LLMs, researchers have begun to incorporate LLMs into CPS, leading to the development of LLM-enabled CPS.
+For instance, LLMs have been integrated into CPS to facilitate task planning and navigation synthesis in controllable robots or agents.
 
-To address these challenges, we develop a simulation and security toolbox with high extendibility and flexibility. One can easily switch between different experiment settings and apply defense prototypes responding to different attacks.
-The source code is available at our `GitHub repository <https://github.com/lion-zhang/CPSim>`_.
+While LLMs significantly augment the capabilities of CPS by offering sophisticated intelligence support, these LLM-enabled CPS often suffer from hallucinations. Hallucination refers to the generation of text or information that lacks grounding in the model's training data or factual reality.
+This issue arises when the model generates responses that are plausible yet inaccurate, nonsensical, or fabricated. The probabilistic nature of LLMs which are effect by hallucinations contradicts the deterministic requirements in these LLM-enabled CPS. This disparity exposes the systems to vulnerabilities and unreliability, which could lead to catastrophic outcomes. Consequently, deploying LLMs in such systems typically requires manual inspection of LLM outputs, a process that is both costly and time-consuming. Therefore, developing an automated tool to verify LLM outputs is crucial for the practical application of LLMs in real-world CPS.
+
+However, it is nontrivial to develop a tool to assure LLM-enabled CPS, due to several significant challenges. (i) context grounding. LLMs lack inherent understanding of the physical world and specific application contexts, necessitating effective context grounding. (ii） requirements. The tool must effectively manage both safety and temporal requirements. For example, UAV missions require precise execution in terms of temporal order and timing to ensure temporal constraints, while also demanding avoidance of collisions with obstacles. (iii) formal Verification. After the LLM produces an output, it is crucial to verify whether it satisfies all specified requirements to ensure the system's safety and reliability. 
+
+To address these challenges, we developed our tool SafePilot which aims to provide comprehensive and general assurance for LLM-enabled CPS. 
+The source code is available at our `GitHub repository <https://github.com/WeizheSyr/SafePilot.git>`_.
+
 
 Overview of the toolboox
 ------------------------
-The proposed toolbox includes a CPS simulator and a set of security tools. As shown in the figure below, the simulator mimics the behavior of a CPS: Sensors measure system states and forward measurements to observers. Meanwhile, the measurements could suffer from external uncertainties and attacks to meet experiment needs. On the basis of them, the observers are responsible for providing state estimates for the controllers. Then, the controllers generate control input to be implemented in physical plants. Plant simulators update system states according to system dynamics and control input. To secure CPS, various attack detectors and real-time attack recovery controllers are included to respond to those attacks.
+The proposed toolkit consists of three main components: context grounding, logic specification and formal verification components, as shown in the figure below.
 
-.. image:: images/1_intro/framework.png
+.. image:: images/1_intro/LLM_framework.png
    :width: 400 px
    :align: center
-   :alt: Design Overview of Simulation and Security Toolbox
+   :alt: Design Overview of toolbox SafePilot
 
 
 Components of the toolbox
 -------------------------
 The toolbox includes the following components:
 
-Plant simulators
+Context grounding
 ~~~~~~~~~~~~~~~~
-The toolbox provides some out-of-the-box CPS benchmarks from different domains.
-*Linear benchmarks* are defined using state-space linear time-invariant (LTI) models, including the F16 fighting falcon, serial RLC circuit, motor speed, etc. 
-*Nonlinear benchmarks* are defined by order differential equations (ODEs), including continuous stirred tank reactor, inverted pendulum, quadrotor, etc. 
-It is simple to switch between all these benchmark plants with controllers by modifying the configuration file.
+In the context grounding component, illustrated by orange paths, task descriptions are translated into natural language prompts through prompt engineering. If the prompt design is insufficient, preventing full grounding, it may lead to fundamental errors. Typically, we begin with straightforward examples to confirm the LLM's understanding of the query. Subsequently, we instruct the LLM to formulate the logical expressions for the constraints and to generate plans addressing the problem.
 
-Controllers
+Logic specification
 ~~~~~~~~~~~
-The toolbox integrates common *nominal controllers*, such as PID, LQR, and MPC controllers. It is convenient to complete various control tasks, such as cruise control and lane keeping in an autonomous vehicle, using those nominal controllers with appropriate parameters.
-In addition, the toolbox also supports *real-time attack-recovery controllers*, which take over the system after identifying an attack. The controllers can generate a recovery control sequence that steers CPS's physical states back to a target set after an attack. The recovery controllers rely on the formal method component.
+For the logic specification component, marked by green paths, task's requirements are similarly converted into natural language prompts. The LLM is tasked with transforming these requirements into logical formulas. It outputs logic specifications that correspond to these requirements, such as first-order logic (FOL) or Linear temporal logic (LTL) formulas. These formulas are then translated into automata using formal tools, following expert review, for further verification. The consistency of formulas across iterations minimizes manual effort. Upon completion of context grounding and logic specification, the LLM formulates a preliminary plan for the controllable agent, though its compliance with constraints is yet to be confirmed.
 
-Observers
+Formal verification
 ~~~~~~~~~
-Some controllers rely on state estimates calculated from sensor measurements by observers. The toolbox provides common observers, such as the Kalman filter for linear systems and extended Kalman filter for nonlinear systems. In most cases, we obtain the ground-truth states from the simulators directly, and the observers then become optional.
+The formal verification component, depicted in blue paths, receives two inputs: the plan candidate and the automaton derived from the requirements. This component utilizes formal verification tools to ascertain whether the plan breaches the formal specifications. For verification of FOL, Python Z3 is employed, while Python Spot is used for LTL verification. If the plan satisfies the formal verification, it is either deployed to the controllable agent or presented to the user. If it fails, the verification process yields detailed feedback, serving as reasoning for the LLM to refine its plan until it either passes verification or reaches the iteration ceiling.
 
-Online Reachability Analysis
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Reachability analyses predict system's reachable states, all possible physical states at subsequent control steps. If reachable states do not intersect with an unsafe set, the safety property must be satisfied. The toolbox contains efficient approaches to online reachability analysis. For linear systems, it leverages the properties of linear transformation of the zonotope and the support function method. For nonlinear systems, it uses interval arithmetic. In addition, the toolbox supports other formal representations, such as half-space and strip, to express unsafe and target state sets. Moreover, it also supports operations on Gaussian distributions to deal with stochastic systems.
-
-Noise and Attacks
-~~~~~~~~~~~~~~~~~
-The toolbox simulates the ubiquitous noise or disturbance in real systems. The uncertainty may follow bounded uniform distributions, unbounded Gaussian distributions, etc.
-Besides, the toolbox simulates attacks that compromise the integrity or availability of sensor measurements, such as bias, replay, and delay attacks.
-
-Supporting Components
-~~~~~~~~~~~~~~~~~~~~
-The timer device simulates the system clock and activates control steps. The logger checkpoints historical data, such as the state estimate, sensor measurement, and control input, and prints the necessary debug information. The toolbox also reserves the interface for different attack detectors, such as CUSUM, chi-square.
-
-
-Requirements and Customizability
---------------------------------
-The toolbox is implemented in Python 3, and thus can be installed in various operating systems with a Python environment. The main dependencies are scipy, numpy and cvxpy packages. Moreover, it is convenient to carry out secondary development because of two aspects:
-
-High extendibility
-~~~~~~~~~~~~~~~~~~
-The toolbox is written in a modular fashion, and each component is organized into a package. Thus, it is easy to extend its built-in functions or add new features. For example, users can add a new CPS according to their needs by modifying the system dynamics and controllers from the template file.  
-
-High flexibility
-~~~~~~~~~~~~~~~~
-Besides numerical simulations, the toolbox can be easily deployed in common high-fidelity simulators, such as AirSim and CARLA. Also, it can be integrated into the Robot operating system (ROS), a set of open-source software libraries and tools for building robot applications. Thus, the toolbox is effortlessly deployed in real robots or CPS testbeds. 
 

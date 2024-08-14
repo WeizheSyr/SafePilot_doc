@@ -1,24 +1,24 @@
-Welcome to CPSim's documentation!
+Welcome to SafePilot's documentation!
 ===================================
 
-Simulation and Security Toolbox for Cyber-Physical Systems
+Toolbox for Assuring LLM-Enabled Cyber-Physical Systems
 
-Github Repository: https://github.com/lion-zhang/CPSim
+Github Repository: https://github.com/WeizheSyr/SafePilot.git
 
-Documentation: https://sim.cpsec.org/
+Documentation: https://weizhesyr.github.io/SafePilot_doc/
 
-If you use CPSim in your work, please cite one of the following references:
+If you use SafePilot in your work, please cite one of the following references:
 
 .. code::
 
-    @inproceedings{zhang2023cpsim,
-      title={Demo: Simulation and Security Toolbox for Cyber-Physical Systems},
-      author={Zhang, Lin and Liu, Mengyu and Kong, Fanxin},
-      booktitle={2023 IEEE 29th Real-Time and Embedded Technology and Applications Symposium (RTAS) Brief Presentations},
-      pages={},
-      year={2023},
-      organization={IEEE}
-    }
+   @inproceedings{xu2024assuring,
+   title={Assuring LLM-Enabled Cyber-Physical Systems},
+   author={Xu, Weizhe and Liu, Mengyu and Drager, Steven and Anderson, Matthew and Kong, Fanxin},
+   booktitle={2024 ACM/IEEE 15th International Conference on Cyber-Physical Systems (ICCPS)},
+   pages={287--288},
+   year={2024},
+   organization={IEEE}
+   }
 
 
 .. note::
@@ -28,10 +28,8 @@ If you use CPSim in your work, please cite one of the following references:
 
 Contributor
 -------------
-* Lin Zhang
-* Mengyu Liu
 * Weizhe Xu
-* Shixiong Jiang
+* Mengyu Liu
 * Fanxin Kong (Advisor)
 
 
