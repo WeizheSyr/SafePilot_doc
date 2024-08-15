@@ -81,8 +81,16 @@
   <section id="block-world-problem">
 <h1>Block World Problem<a class="headerlink" href="#block-world-problem" title="Link to this heading"></a></h1>
 <p>In this problem, we require the LLM to generate a plan to control a robotic arm to stack blocks on a plane as specified.</p>
-<p>We read the prompt from <code class="docutils literal notranslate"><span class="pre">first_prompt_formula.txt</span></code> and instruct the LLM to generate FOL specifications in the format required by the Z3 Python API.</p>
+<p>Fill in your gpt api key in the file <code class="docutils literal notranslate"><span class="pre">case1/auto.py</span></code>. Then in the <code class="docutils literal notranslate"><span class="pre">case1</span></code> directory, run the following command to start the tool.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>auto.py
+</pre></div>
+</div>
+<p>The tool reads the prompt from <code class="docutils literal notranslate"><span class="pre">first_prompt_formula.txt</span></code> and instructs the LLM to generate FOL specifications in the format required by the Z3 Python API.</p>
 <p>After manually checking the correctness of the generated specification, we proceed to request the LLM to generate a plan using prompt from <code class="docutils literal notranslate"><span class="pre">first_prompt_plan.txt</span></code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You can find the correct specification code in <code class="docutils literal notranslate"><span class="pre">case1/draft.py</span></code> for this example.</p>
+</div>
 <p>The specific problem is as follows.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">define</span> <span class="p">(</span><span class="n">problem</span> <span class="n">BW</span><span class="o">-</span><span class="n">rand</span><span class="o">-</span><span class="mi">6</span><span class="p">)</span>
 <span class="p">(:</span><span class="n">domain</span> <span class="n">blocksworld</span><span class="o">-</span><span class="mi">4</span><span class="n">ops</span><span class="p">)</span>

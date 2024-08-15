@@ -31,6 +31,11 @@ After installing SafePilot, you can use the following command to run ``hello_saf
    python hello_safepilot.py
 
 
+.. Important::
+
+   SafePilot requires linux and does not support Apple M-Series CPUs.
+   
+
 Basic Concepts
 --------------
 First-order logic (FOL)

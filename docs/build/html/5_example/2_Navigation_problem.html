@@ -81,6 +81,10 @@
   <section id="navigation-problem">
 <h1>Navigation Problem<a class="headerlink" href="#navigation-problem" title="Link to this heading"></a></h1>
 <p>In this case study, we address a navigation problem that requires the LLM to devise a plan for a driver while adhering to temporal constraints.</p>
+<p>Fill in your gpt api key in the file <code class="docutils literal notranslate"><span class="pre">case2/auto.py</span></code>. Then in the <code class="docutils literal notranslate"><span class="pre">case2</span></code> directory, run the following command to start the tool.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>auto.py
+</pre></div>
+</div>
 <p>We read the prompt from <code class="docutils literal notranslate"><span class="pre">first_prompt_formula.txt</span></code> and instruct the LLM to generate LTL formulas.</p>
 <p>The temporal constraints in this problem is <cite>You should have been to C and D before you go to G</cite>. The correct LTL formula is shown below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>G(!(g) U (c &amp; d))

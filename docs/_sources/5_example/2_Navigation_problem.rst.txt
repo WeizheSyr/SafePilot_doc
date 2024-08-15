@@ -3,6 +3,12 @@ Navigation Problem
 
 In this case study, we address a navigation problem that requires the LLM to devise a plan for a driver while adhering to temporal constraints. 
 
+Fill in your gpt api key in the file ``case2/auto.py``. Then in the ``case2`` directory, run the following command to start the tool.
+
+.. code:: bash
+
+   python auto.py
+
 We read the prompt from ``first_prompt_formula.txt`` and instruct the LLM to generate LTL formulas.
 
 The temporal constraints in this problem is `You should have been to C and D before you go to G`. The correct LTL formula is shown below.

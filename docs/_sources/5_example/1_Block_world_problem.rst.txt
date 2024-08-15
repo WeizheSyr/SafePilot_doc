@@ -3,10 +3,21 @@ Block World Problem
 
 In this problem, we require the LLM to generate a plan to control a robotic arm to stack blocks on a plane as specified.
 
+Fill in your gpt api key in the file ``case1/auto.py``. Then in the ``case1`` directory, run the following command to start the tool.
 
-We read the prompt from ``first_prompt_formula.txt`` and instruct the LLM to generate FOL specifications in the format required by the Z3 Python API.
+.. code:: bash
+
+   python auto.py
+
+
+The tool reads the prompt from ``first_prompt_formula.txt`` and instructs the LLM to generate FOL specifications in the format required by the Z3 Python API.
 
 After manually checking the correctness of the generated specification, we proceed to request the LLM to generate a plan using prompt from ``first_prompt_plan.txt``.
+
+.. Important::
+
+   You can find the correct specification code in ``case1/draft.py`` for this example.
+   
 
 The specific problem is as follows.
 
