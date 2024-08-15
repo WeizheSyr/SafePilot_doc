@@ -10,7 +10,7 @@ After activating docker on your computer, get the docker image using the followi
 
 .. code:: bash
 
-   docker pull wxu3/safepilot
+   docker pull wxu3/safepilot:0.1.2
 
 
 (Optional) 
@@ -34,7 +34,7 @@ After installing SafePilot, you can use the following command to run ``hello_saf
 .. Important::
 
    SafePilot requires linux and does not support Apple M-Series CPUs.
-   
+
 
 Basic Concepts
 --------------
