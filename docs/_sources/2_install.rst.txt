@@ -10,12 +10,18 @@ After activating docker on your computer, install SafePilot using the following 
 
 .. code:: bash
 
-   docker pull safepilot
+   docker pull wxu3/safepilot
 
 
 (Optional) 
 If you prefer to manually configure the environment, we recommend setting it up within a virtual environment.
 Please refer to `Anaconda Documentation <https://docs.anaconda.com/free/anaconda/install/index.html/>`_ for more information. After activating your virtual environment, install the required packages according to `dependencies.txt <https://en.wikipedia.org/wiki/Linear_temporal_logic/>`_.
+
+After configuring the environment, use the following command to install SafePilot:
+
+.. code:: bash
+
+   git pull git@github.com:WeizheSyr/SafePilot.git
 
 
 After installing SafePilot, you can use the following command to run ``hello_safepilot.py`` to verify if the environment is configured properly.

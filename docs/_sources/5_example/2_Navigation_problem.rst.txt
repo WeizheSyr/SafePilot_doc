@@ -23,8 +23,8 @@ The specific problem is as follows.
    (You should have been to C and D before you go to G))
    (:roads
    (A-B)
-   (B-E)
-   (E-A)
+   (A-E)
+   (E-D)
    (B-C)
    (B-F)
    (F-G)
