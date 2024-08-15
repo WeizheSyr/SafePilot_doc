@@ -12,6 +12,11 @@ After activating docker on your computer, get the docker image using the followi
 
    docker pull wxu3/safepilot:0.1.2
 
+After starting the container based on the image, get into the virtual environment using the following command:
+
+.. code:: bash
+
+   conda activate plan
 
 (Optional) 
 If you prefer to manually configure the environment, we recommend setting it up within a virtual environment.
