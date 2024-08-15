@@ -6,7 +6,7 @@ Installation
 
 We recommend using SafePilot via Docker.
 Please refer to `Docker Documentation <https://docs.docker.com/>`_ for more information.
-After activating docker on your computer, install SafePilot using the following command:
+After activating docker on your computer, get the docker image using the following command:
 
 .. code:: bash
 
@@ -21,7 +21,7 @@ After configuring the environment, use the following command to install SafePilo
 
 .. code:: bash
 
-   git pull git@github.com:WeizheSyr/SafePilot.git
+   git clone https://github.com/WeizheSyr/SafePilot.git
 
 
 After installing SafePilot, you can use the following command to run ``hello_safepilot.py`` to verify if the environment is configured properly.
