@@ -18,9 +18,6 @@ If you prefer to manually configure the environment, we recommend setting it up 
 Please refer to `Anaconda Documentation <https://docs.anaconda.com/free/anaconda/install/index.html/>`_ for more information. After activating your virtual environment, install the required packages according to `dependencies.txt <https://en.wikipedia.org/wiki/Linear_temporal_logic/>`_.
 
 
-
-Minimum Simulation
-------------------
 After installing SafePilot, you can use the following command to run ``hello_safepilot.py`` to verify if the environment is configured properly.
 
 .. code:: bash
